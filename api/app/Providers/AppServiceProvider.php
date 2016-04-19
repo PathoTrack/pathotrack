@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace PathoTrack\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

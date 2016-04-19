@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace PathoTrack\Http\Controllers\Auth;
 
-use App\User;
+use PathoTrack\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use PathoTrack\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

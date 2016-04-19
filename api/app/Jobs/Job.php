@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace PathoTrack\Jobs;
 
 use Illuminate\Bus\Queueable;
 

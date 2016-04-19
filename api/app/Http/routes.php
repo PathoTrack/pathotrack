@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(array('prefix' => 'v1'), function() {
+    Route::resource('packages', 'PackageController');
+    Route::resource('tests', 'TestController');
+});
