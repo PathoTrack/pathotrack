@@ -1,0 +1,41 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# -------------
+# Common
+# -------------
+
+# dependencies
+node_modules
+bower_components
+
+# -------------
+# api
+# -------------
+.env
+
+# -------------
+# webapp
+# -------------
+
+# compiled output
+dist
+tmp
+
+# -------------
+# mobileapp
+# -------------
+
+# compiled output
+www
+
+# misc
+.sass-cache
+connect.lock
+coverage/*
+libpeerconnection.log
+npm-debug.log
+testem.log
+
+# other
+*.map
+ref
