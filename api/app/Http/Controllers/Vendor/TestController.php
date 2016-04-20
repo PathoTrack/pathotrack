@@ -52,19 +52,9 @@ class TestController extends Controller
             $tests = $tests->get();
         }
 
-        // display packages which is profile test
-        if(Input::has('search') && !empty(Input::get('search'))) {
-            $packages = Package::where('name', 'like', '%'.Input::get('search').'%')
-                                ->where('is_profile_test', '=', 1)
-                                ->get();
-        } else {
-            $packages = Package::where('is_profile_test', '=', 1)->get();
-        }
-
         return Response::json(array(
             'errors' => $errors,
             'tests' => $tests,
-            'packages' => $packages,
             'meta' => array(
                 'total_pages' => $total_pages
             )
