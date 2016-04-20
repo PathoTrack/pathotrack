@@ -46,37 +46,18 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-        ],
-
         'mysql' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST') ?: (isset($_SERVER['RDS_HOSTNAME']) ? $_SERVER['RDS_HOSTNAME'] : 'localhost'),
+            'database'  => env('DB_DATABASE') ?: (isset($_SERVER['RDS_DB_NAME']) ? $_SERVER['RDS_DB_NAME'] : 'pathotrack'),
+            'username'  => env('DB_USERNAME') ?: (isset($_SERVER['RDS_USERNAME']) ? $_SERVER['RDS_USERNAME'] : 'root'),
+            'password'  => env('DB_PASSWORD') ?: (isset($_SERVER['RDS_PASSWORD']) ? $_SERVER['RDS_PASSWORD'] : ''),
+            'port'      => env('DB_PORT') ?: (isset($_SERVER['RDS_PORT']) ? $_SERVER['RDS_PORT'] : 3306),
+            'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-            'strict' => false,
-            'engine' => null,
-        ],
-
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-        ],
+            'prefix'    => '',
+            'strict'    => false,
+        ]
 
     ],
 
