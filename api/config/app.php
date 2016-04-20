@@ -1,5 +1,18 @@
 <?php
 
+    $env = env('APP_ENV');
+
+    $web_url = 'https://manage.pathotrack.com';
+    $api_url = 'https://api.pathotrack.com';
+
+    if($env == 'local') {
+        $web_url = 'https://localhost:4200';
+        $api_url = 'https://api-local.pathotrack.com';
+    } else if ($env == 'development') {
+        $web_url = 'https://manage-dev.pathotrack.com';
+        $api_url = 'https://api-dev.pathotrack.com';
+    }
+
 return [
 
     /*
