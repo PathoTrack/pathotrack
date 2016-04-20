@@ -5,5 +5,9 @@
 
     Setting `disableAnalytics` to true will prevent any data from being sent.
   */
-  "disableAnalytics": false
+  "disableAnalytics": false,
+  "output-path": "../mobileapp/www",
+  "ssl": true,
+  "ssl-key": "D:/wamp/bin/apache/apache2.4.2/conf/server.key",
+  "ssl-cert": "D:/wamp/bin/apache/apache2.4.2/conf/server.crt"
 }

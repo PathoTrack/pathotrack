@@ -15,12 +15,14 @@ class CreatePackageTestsTable extends Migration
         Schema::create('package_tests', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('package_id');
+            $table->unsignedInteger('profile_id')->nullable();
             $table->unsignedInteger('test_id');
             $table->timestamps();
         });
 
         Schema::table('package_tests', function($table) {
            $table->foreign('package_id')->references('id')->on('packages');
+           $table->foreign('profile_id')->references('id')->on('tests');
            $table->foreign('test_id')->references('id')->on('tests');
         });
     }

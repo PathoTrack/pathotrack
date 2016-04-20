@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(array('prefix' => 'v1'), function() {
+Route::group(array('namespace' => 'Staff', 'prefix' => 'v1/staff'), function() {
     Route::resource('packages', 'PackageController');
     Route::resource('tests', 'TestController');
+});
+
+Route::group(array('namespace' => 'Vendor', 'prefix' => 'v1/vendor'), function() {
+    Route::resource('packages', 'PackageController', ['only' => ['index']]);
+    Route::resource('tests', 'TestController', ['only' => ['index']]);
 });

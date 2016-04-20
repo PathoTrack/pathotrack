@@ -21,7 +21,6 @@ class CreatePackagesTable extends Migration
             $table->boolean('is_half_day_fasting_applicable');
             $table->text('special_instructions')->nullable();
             $table->unsignedInteger('number_of_visits_required');
-            $table->boolean('is_profile_test');
             $table->timestamps();
         });
     }

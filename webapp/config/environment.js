@@ -39,7 +39,7 @@ module.exports = function(environment) {
       ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
       ENV.APP.LOG_VIEW_LOOKUPS = true;*/
 
-      ENV.APP.API_HOST = 'http://api.pathotrack.dev';
+      ENV.APP.API_HOST = 'https://api-local.pathotrack.com';
       ENV.APP.WEBAPP_HOST = 'http://localhost:4200/';
   }
 
