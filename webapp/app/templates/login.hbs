@@ -1,0 +1,27 @@
+<form {{action "authenticate" on="submit"}} class="ui large form margin-bottom-70">
+  <div class="list margin-bottom-20">
+      {{input class="full-width big-input"
+              id="identification" 
+              type="email" 
+              value=identification
+              required="required"
+              placeholder="username" }}
+  </div>
+  <div class="list">
+      {{input class="full-width big-input"
+              id="password" 
+              type="password" 
+              value=password
+              required="required"
+              placeholder="password" }}
+  </div>
+  <div class="clearfix margin-top-40">
+    <div class="pull-left">
+      <button class="button button-calm pull-right" type="submit">Login</button>
+    </div>
+    <div class="pull-right text-align-right">
+      <a target="_blank" {{action 'goToUrl' forgotPasswordURL '_blank'}} class=" display-block lowercase">Forgot Password?</a>
+      or {{#link-to "signup" class="lowercase color-brand bold"}}Sign up{{/link-to}}
+    </div>
+  </div>
+</form> 
