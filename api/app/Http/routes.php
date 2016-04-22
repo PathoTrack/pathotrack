@@ -83,10 +83,12 @@ Route::group(array('namespace' => 'Open', 'prefix' => 'v1/open', 'before' => 'oa
 
 Route::group(array('namespace' => 'Staff', 'prefix' => 'v1/staff', 'before' => 'oauth|loginStaff'), function() {
     Route::resource('packages', 'PackageController');
+    Route::resource('authenticatedUser', 'AuthenticatedUserController', ['only' => ['index', 'destroy', 'update']]);
     Route::resource('tests', 'TestController');
 });
 
 Route::group(array('namespace' => 'Vendor', 'prefix' => 'v1/vendor', 'before' => 'oauth|loginVendor'), function() {
     Route::resource('packages', 'PackageController', ['only' => ['index']]);
+    Route::resource('authenticatedUser', 'AuthenticatedUserController', ['only' => ['index', 'destroy', 'update']]);
     Route::resource('tests', 'TestController', ['only' => ['index']]);
 });
