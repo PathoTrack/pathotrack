@@ -15,24 +15,25 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => '',
+        'secret' => '',
+    ],
+
+    'mandrill' => [
+        'secret' => '',
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
+        'username' => 'ses-smtp-user.20160227-020923',  // Probably not used
+        'key'    => 'AKIAIID2ZNAD6AS5UB5A',
+        'secret' => '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',
         'region' => 'us-east-1',
     ],
 
-    'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
-    ],
-
     'stripe' => [
-        'model' => PathoTrack\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'model'  => PathoTrack\User::class,
+        'key'    => '',
+        'secret' => '',
     ],
 
 ];
