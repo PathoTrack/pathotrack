@@ -16,8 +16,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      API_HOST: 'http://api.visa.guide',
-      WEBAPP_HOST: 'http://web.visa.guide',
+      API_HOST: 'http://api.pathotrack.com',
+      WEBAPP_HOST: 'http://web.pathotrack.com',
+      API_CLIENT_ID: 'zgisIxWAehLZ4mvr',
+      API_CLIENT_SECRET: 'fGXnEsBQFqxNgxIIpWqNUiBw7VdDv0oK',
       ENV: environment || 'local',
     },
     contentSecurityPolicy: {

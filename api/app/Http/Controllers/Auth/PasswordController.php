@@ -1,9 +1,11 @@
-<?php
-
-namespace PathoTrack\Http\Controllers\Auth;
+<?php namespace PathoTrack\Http\Controllers\Auth;
 
 use PathoTrack\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+
+use Config;
 
 class PasswordController extends Controller
 {
@@ -23,10 +25,17 @@ class PasswordController extends Controller
     /**
      * Create a new password controller instance.
      *
+     * @param  \Illuminate\Contracts\Auth\Guard  $auth
+     * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
      * @return void
      */
-    public function __construct()
+    public function __construct(Guard $auth, PasswordBroker $passwords)
     {
+        $this->auth = $auth;
+        $this->passwords = $passwords;
+        $this->redirectPath = Config::get('app.web_url').'/#/login?message=Password reset successful!';
+        $this->redirectTo = $this->redirectPath;
+
         $this->middleware('guest');
     }
 }

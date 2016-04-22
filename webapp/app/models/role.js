@@ -6,6 +6,10 @@ export default BaseModel.extend({
     display_name: DS.attr('string'),
     name: DS.attr('string'),
 
+    // Relationships
+    users: DS.hasMany('user', { inverse: 'roles' }),
+    authenticatedUser: DS.belongsTo('authenticated-user', { inverse: 'roles' }),
+
     // Computed
     isStaff: function() {
         return this.get('name') === 'staff';

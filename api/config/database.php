@@ -49,7 +49,7 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST') ?: (isset($_SERVER['RDS_HOSTNAME']) ? $_SERVER['RDS_HOSTNAME'] : 'localhost'),
-            'database'  => env('DB_DATABASE') ?: (isset($_SERVER['RDS_DB_NAME']) ? $_SERVER['RDS_DB_NAME'] : 'pathotrack'),
+            'database'  => env('DB_DATABASE') ?: (isset($_SERVER['RDS_DB_NAME']) ? $_SERVER['RDS_DB_NAME'] : 'visaguide'),
             'username'  => env('DB_USERNAME') ?: (isset($_SERVER['RDS_USERNAME']) ? $_SERVER['RDS_USERNAME'] : 'root'),
             'password'  => env('DB_PASSWORD') ?: (isset($_SERVER['RDS_PASSWORD']) ? $_SERVER['RDS_PASSWORD'] : ''),
             'port'      => env('DB_PORT') ?: (isset($_SERVER['RDS_PORT']) ? $_SERVER['RDS_PORT'] : 3306),
@@ -90,9 +90,8 @@ return [
         'cluster' => false,
 
         'default' => [
-            'host' => env('REDIS_HOST', 'localhost'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
+            'host'     => '127.0.0.1',
+            'port'     => 6379,
             'database' => 0,
         ],
 

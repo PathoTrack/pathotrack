@@ -1,7 +1,7 @@
-<?php namespace Prsntly\Http\Controllers\Open;
+<?php namespace PathoTrack\Http\Controllers\Open;
 
-use Prsntly\Http\Requests;
-use Prsntly\Http\Controllers\Controller;
+use PathoTrack\Http\Requests;
+use PathoTrack\Http\Controllers\Controller;
 
 use Request;
 use Response;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 
 use Authorizer;
-use Prsntly\User;
+use PathoTrack\User;
 
 class AuthenticatedUserController extends Controller {
 
@@ -34,14 +34,6 @@ class AuthenticatedUserController extends Controller {
                 'status' => 'BAD_REQUEST'
             ];
         } else {
-            $user->no_of_flagged_logs = DB::table('logs')->where('user_id', '=', $user->id)->where('is_flagged', '=', true)->count();
-            foreach ($user->roles as $role) {
-                if ($role->department_id) {
-                    $role_ids = DB::table('roles')->where('department_id', '=', $role->department_id)->lists('id');
-                }
-            }
-            $user_ids = DB::table('role_user')->whereIn('role_id', $role_ids)->groupBy('user_id')->lists('user_id');
-            $user->no_of_logs_needs_review = DB::table('logs')->whereIn('user_id', $user_ids)->where('needs_review', '=', true)->count();
             $user->gravatar_img_url = 'https://www.gravatar.com/avatar/'.md5( strtolower( trim( Auth::user()->email ) ) ).'?d=mm';
         }
 
@@ -63,7 +55,6 @@ class AuthenticatedUserController extends Controller {
         $input = Input::json()->get('authenticatedUser');
 
         $user = User::find($id);
-        $user->reg_id = $input['reg_id'];
         $user->update();
                     
         return Response::json(array(

@@ -1,0 +1,32 @@
+.ember-notify-cn {
+    height: inherit !important;
+    .ember-notify {
+        position: relative;
+        padding: 15px 20px 15px 15px;
+        margin: 0;
+        border: 0;
+        color: white;
+        font-size: 17px;
+        word-break: break-word;
+        height: inherit;
+        &.alert-success {
+            background: #33cd5f;
+        }
+        &.alert-danger {
+            background: #ef473a;
+        }
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 14px;
+            font-size: 23px;
+            color: white;
+        }
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .ember-notify-default.ember-notify-cn {
+        padding-left: 0;
+    }
+}

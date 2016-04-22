@@ -10,7 +10,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             if (model.get('firstObject.roles').isAny('isStaff')) {
                 this.transitionTo('staff.dashboard');
             } else if (model.get('firstObject.roles').isAny('isVendor')) {
-                this.transitionTo('vedor.dashboard');
+                this.transitionTo('vendor.dashboard');
             }
         }
     }

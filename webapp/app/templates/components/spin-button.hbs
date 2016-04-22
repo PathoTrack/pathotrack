@@ -1,0 +1,9 @@
+{{#if isLoading}}
+  <div class="spinner">
+    <div class="white bounce1"></div>
+    <div class="white bounce2"></div>
+    <div class="white bounce3"></div>
+  </div>
+{{else}}
+  {{buttonText}} {{#if externalLink}} <span class="fa fa-external-link padding-left-5"></span> {{/if}}
+{{/if}}
