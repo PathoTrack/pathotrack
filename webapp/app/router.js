@@ -6,11 +6,25 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-	this.route('packages', function() {
-    	this.route('new');
-    	this.route('show', { path: ':package_id' });
-    	this.route('edit', { path: ':package_id/edit' });
-  	});
+
+  	this.route('staff', function() {
+
+      	this.route('packages', function() {
+	    	this.route('new');
+	    	this.route('edit', { path: ':package_id/edit' });
+	  	});
+
+	  	this.route('tests', function() {
+	    	this.route('new');
+	    	this.route('edit', { path: ':test_id/edit' });
+	  	});
+
+    });
+
+    this.route('vendor', function() {
+    	this.route('packages');
+	  	this.route('tests');
+    });
 });
 
 export default Router;

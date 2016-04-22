@@ -1,6 +1,7 @@
 import DS from 'ember-data';
+import BaseModel from './base-model';
 
-export default DS.Model.extend({
+export default BaseModel.extend({
 	name: DS.attr('string'),
 	description: DS.attr('string'),
 	price: DS.attr('number'),

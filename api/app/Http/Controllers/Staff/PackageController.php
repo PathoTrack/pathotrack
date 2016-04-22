@@ -100,7 +100,7 @@ class PackageController extends Controller
         
         return Response::json(array(
             'errors' => [],
-            'package' => [$package]
+            'package' => $package
         ), 200);
     }
 
