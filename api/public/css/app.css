@@ -1,0 +1,131 @@
+/*Fonts*/
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('fonts/Font Awesome/fontawesome-webfont.eot');
+    src: url('fonts/Font Awesome/fontawesome-webfont.eot') format('embedded-opentype'),
+         url('fonts/Font Awesome/fontawesome-webfont.woff2') format('woff2'),
+         url('fonts/Font Awesome/fontawesome-webfont.woff') format('woff'),
+         url('fonts/Font Awesome/fontawesome-webfont.ttf') format('truetype'),
+         url('fonts/Font Awesome/fontawesome-webfont.svg#fontawesome-webfont') format('svg');
+}
+
+.tacnique-logo {
+    background-image: url(images/logo.png);
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+}
+/*Utillities*/
+.fixed {
+    position: fixed;
+}
+.bottom-0 {
+    bottom: 0;
+}
+.right-0 {
+    right: 0;
+}
+.left-0 {
+    left: 0;
+}
+.top-0 {
+    top: 0;
+}
+.full-width {
+    width: 100%;
+}
+.no-border {
+    border: none !important;
+}
+.no-border-radius {
+    border-radius: 0 !important;
+}
+.bg-calm {
+    background-color: #3b2f80 !important;
+}
+.bg-brand {
+    background-color: #3b2f80 !important;
+}
+
+/*Custom styles*/
+.navbar-brand {
+    position: relative;
+    height: 94px !important;
+}
+/* .navbar-brand:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -19px;
+    margin-left: -20px;
+    z-index: 1;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #3b2f80;
+} */
+
+.navbar .navbar-header,
+.navbar.navbar-default .logo {
+    float: none;
+}
+.navbar.navbar-default .logo {
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    display: block;
+}
+.navbar.navbar-default .logo:hover {
+    color: #ffffff;
+}
+.reset-password button {
+    padding: 12px;
+}
+.navbar-header .navbar-brand {
+    padding: 12px 15px;
+}
+ .navbar-default .navbar-header .navbar-toggle .icon-bar {
+    background-color: white;
+}
+.navbar-default .navbar-header .navbar-toggle {
+    border-color: white;
+    margin-top: 10px;
+}
+.navbar-default .navbar-header .navbar-toggle:focus .icon-bar, 
+.navbar-default .navbar-header .navbar-toggle:hover .icon-bar {
+    background-color: #27a9e1;
+}
+.navbar-default .navbar-header .navbar-toggle:focus, 
+.navbar-default .navbar-header .navbar-toggle:hover {
+    background-color: white;
+}
+.btn {
+    font-size: 15px !important;
+}
+.fa {
+    padding-right: 5px;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.info-msg {
+    text-align: center;
+}
+.fa-check-circle::before {
+    content: "\f058";
+}
+.fa-times-circle-o {
+    color: red;
+}
+.fa-times-circle-o::before {
+    content: "\f05c";
+}
+.fa-check-circle {
+    color: green;
+}
