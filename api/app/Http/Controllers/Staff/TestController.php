@@ -102,7 +102,7 @@ class TestController extends Controller
         
         return Response::json(array(
             'errors' => [],
-            'test' => [$test]
+            'test' => $test
         ), 200);
     }
 
