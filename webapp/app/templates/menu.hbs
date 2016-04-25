@@ -1,0 +1,50 @@
+<header class="menu-navigation padding-0 zindex-10000 height-70 bg-brand header-pattern no-border fixed top-0 right-0 left-0">
+  <div class="menu-wrap clearfix">
+    <div class="menu-btn pull-left">
+      <div class="bg-white"></div>
+    </div>
+    <div class="site-logo inline-block pull-left padding-20 custom-style">
+      <a class="logo margin-0" href="">
+        Patho Track
+      </a>
+    </div>
+    {{#if session.isAuthenticated}}
+      <a href="#" class="pull-right logout-btn text-black" {{action 'invalidateSession'}}><span class="fa fa-power-off"></span></a>
+    {{else}}
+      {{#link-to 'login'}}Login{{/link-to}}
+    {{/if}}
+  </div>
+</header>
+
+{{#pushy-left class="padding-70"}}
+  <ul class="list m-b-0 padding-0 margin-0">
+    {{#if authenticatedUser.isStaff}}
+      <li class="padding-0 no-border-width has-child pushy-submenu">
+        {{#link-to 'staff.dashboard' class="section-header body-extra-small fa fa-user-secret"}}&nbsp;Staff{{/link-to}}
+        <ul>
+          <li class="padding-0 no-border-width bg-transparent">
+            {{#link-to 'staff.packages' class="body-extra-small"}}- Packages{{/link-to}}
+          </li>
+          <li class="padding-0 no-border-width bg-transparent">
+            {{#link-to 'staff.tests' class="body-extra-small"}}- Tests{{/link-to}}
+          </li>
+        </ul>
+      </li>
+    {{/if}}
+    {{#if authenticatedUser.isVendor}}
+      <li class="padding-0 no-border-width has-child pushy-submenu">
+        {{#link-to 'vendor.dashboard' class="section-header body-extra-small fa fa-user-secret"}}&nbsp;Vendor{{/link-to}}
+        <ul>
+          <li class="padding-0 no-border-width bg-transparent">
+            {{#link-to 'vendor.packages' class="body-extra-small"}}- Packages{{/link-to}}
+          </li>
+          <li class="padding-0 no-border-width bg-transparent">
+            {{#link-to 'vendor.tests' class="body-extra-small"}}- Tests{{/link-to}}
+          </li>
+        </ul>
+      </li>
+    {{/if}}
+  </ul>
+{{/pushy-left}}
+
+{{outlet}}

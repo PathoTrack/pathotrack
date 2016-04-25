@@ -19,5 +19,12 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  //==============================
+  /* CSS */
+  //==============================
+
+  // Font Awesome
+  app.import('bower_components/font-awesome/css/font-awesome.css');
+
   return app.toTree();
 };
