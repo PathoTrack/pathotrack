@@ -1,0 +1,32 @@
+<form class="ui vertical stripe segment form" {{action "save" on="submit"}}>
+  <div class="field">
+    <label>Name</label>
+    {{input value=model.vendor.name type="text" name="name" placeholder="Name"}}
+  </div>
+  <div class="field">
+    <label>Discount</label>
+    {{input value=model.vendor.discount type="number" name="discount" placeholder="Discount"}}
+  </div>
+  <div class="field">
+    <label>Service Fee</label>
+    {{input value=model.vendor.service_fee type="number" name="service-fee" placeholder="Service Fee"}}
+  </div>
+  <div class="field">
+    <label>Minimum Amount For Free Visit</label>
+    {{input value=model.vendor.minimum_amount_for_free_visit type="number" name="minimum-amount-for-free-visit" placeholder="Minimum Amount For Free Visit"}}
+  </div>
+  <div class="field">
+    <label>Single Fee Visit</label>
+    {{input value=model.vendor.single_visit_fee type="number" name="single-fee-visit" placeholder="Single Fee Visit"}}
+  </div>
+  <div class="field">
+    <label>Double Fee Visit</label>
+    {{input value=model.vendor.double_visit_fee type="number" name="double-fee-visit" placeholder="Double Fee Visit"}}
+  </div>
+  <div class="field">
+    <label>Email</label>
+    {{input value=model.vendor.email type="text" name="email" placeholder="Email"}}
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+  <button class="ui button" {{action "cancel"}}>Cancel</button>
+</form> 

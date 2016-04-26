@@ -3,9 +3,9 @@ import config from '../../../config/environment';
 
 export default Ember.Controller.extend({
     actions: {
-        delete: function(pack) {
-            pack.deleteRecord();
-            pack.save();
+        delete: function(vendor) {
+            vendor.deleteRecord();
+            vendor.save();
             return false;
         }
     }

@@ -49,6 +49,20 @@ Router.map(function() {
     this.route('tests');
   });
 
+  this.route('admin', function() {
+    this.route('dashboard');
+
+    this.route('vendors', function() {
+      this.route('new');
+      this.route('edit', { path: ':vendor_id/edit' });
+    });
+
+    this.route('contacts', function() {
+      this.route('new');
+      this.route('edit', { path: ':contact_id/edit' });
+    });
+  });
+
   // Auhtentication
   this.route('login');
   this.route('signup');

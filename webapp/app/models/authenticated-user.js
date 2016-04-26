@@ -9,6 +9,10 @@ export default User.extend({
     isStaff: function() {
         return this.get('roles').isAny('isStaff');
     }.property('roles'),
+
+    isAdmin: function() {
+        return this.get('roles').isAny('isAdmin');
+    }.property('roles'),
     
     isVendor: function() {
         return this.get('roles').isAny('isVendor');

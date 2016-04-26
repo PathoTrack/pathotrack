@@ -15,6 +15,10 @@ export default BaseModel.extend({
         return this.get('name') === 'staff';
     }.property('name'),
 
+    isAdmin: function() {
+        return this.get('name') === 'admin';
+    }.property('name'),
+
     isVendor: function() {
         return this.get('name') === 'vendor';
     }.property('name')

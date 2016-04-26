@@ -44,6 +44,19 @@
         </ul>
       </li>
     {{/if}}
+    {{#if authenticatedUser.isAdmin}}
+      <li class="padding-0 no-border-width has-child pushy-submenu">
+        {{#link-to 'admin.dashboard' class="section-header body-extra-small fa fa-user-secret"}}&nbsp;Admin{{/link-to}}
+        <ul>
+          <li class="padding-0 no-border-width bg-transparent">
+            {{#link-to 'admin.vendors' class="body-extra-small"}}- Vendors{{/link-to}}
+          </li>
+          <li class="padding-0 no-border-width bg-transparent">
+            {{#link-to 'admin.contacts' class="body-extra-small"}}- Contacts{{/link-to}}
+          </li>
+        </ul>
+      </li>
+    {{/if}}
   </ul>
 {{/pushy-left}}
 

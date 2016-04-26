@@ -1,0 +1,12 @@
+<form class="ui vertical stripe segment form" {{action "save" on="submit"}}>
+  <div class="field">
+    <label>Name</label>
+    {{input value=model.contact.name type="text" name="name" placeholder="Name"}}
+  </div>
+  <div class="field">
+    <label>Number</label>
+    {{input value=model.contact.number type="text" name="number" placeholder="Number"}}
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+  <button class="ui button" {{action "cancel"}}>Cancel</button>
+</form> 
