@@ -11,6 +11,7 @@
 		 	  	<tr>
 		 	  		<th>Name</th>
 			 	  	<th>Number</th>
+			 	  	<th>Vendor</th>
 			 	  	<th></th>
 			 	  	<th></th>
 		 		</tr>
@@ -20,14 +21,15 @@
 			 	 	<tr>
 			 	 	  	<td>{{contact.name}}</td>
 			 	 	  	<td>{{contact.number}}</td>
-			 	 	  	<td>{{#link-to "admin.contacts.edit" contact.id}}Edit{{/link-to}}</td>
-			 	 	  	<td><button {{action "delete" contact}}>Delete</button></td>
+			 	 	  	<td></td>
+			 	 	  	<td>{{#link-to "admin.contacts.edit" contact.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}</td>
+			 	 	  	<td class="delete_button"><button {{action "delete" contact}}><i class="trash icon"></i> Delete</button></td>
 			 	 	</tr>
 			 	 {{/each}}
 		 	</tbody>
 		</table>
 
-		{{#link-to "admin.contacts.new"}}Add New{{/link-to}}
+		{{#link-to "admin.contacts.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
 
     	{{infinity-loader infinityModel=model loadingText="" loadedText="Woohoo! You've loaded everything."}}
 

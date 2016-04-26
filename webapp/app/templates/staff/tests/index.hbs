@@ -28,14 +28,14 @@
 			 	 	  	<td>{{test.is_half_day_fasting_applicable}}</td>
 			 	 	  	<td>{{test.special_instructions}}</td>
 			 	 	  	<td>{{test.number_of_visits_required}}</td>
-			 	 	  	<td>{{#link-to "staff.tests.edit" test.id}}Edit{{/link-to}}</td>
-			 	 	  	<td><button {{action "delete" test}}>Delete</button></td>
+			 	 	  	<td>{{#link-to "staff.tests.edit" test.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}</td>
+			 	 	  	<td class="delete_button"><button {{action "delete" test}}><i class="trash icon"></i> Delete</button></td>
 			 	 	</tr>
 			 	 {{/each}}
 		 	</tbody>
 		</table>
 
-		{{#link-to "staff.tests.new"}}Add New{{/link-to}}
+		{{#link-to "staff.tests.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
 
     	{{infinity-loader infinityModel=model loadingText="" loadedText="Woohoo! You've loaded everything."}}
 

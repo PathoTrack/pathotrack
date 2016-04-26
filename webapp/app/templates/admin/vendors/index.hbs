@@ -30,14 +30,14 @@
 			 	 	  	<td>{{vendor.single_visit_fee}}</td>
 			 	 	  	<td>{{vendor.double_visit_fee}}</td>
 			 	 	  	<td>{{vendor.email}}</td>
-			 	 	  	<td>{{#link-to "admin.vendors.edit" vendor.id}}Edit{{/link-to}}</td>
-			 	 	  	<td><button {{action "delete" vendor}}>Delete</button></td>
+			 	 	  	<td>{{#link-to "admin.vendors.edit" vendor.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}</td>
+			 	 	  	<td class="delete_button"><button {{action "delete" vendor}}><i class="trash icon"></i> Delete</button></td>
 			 	 	</tr>
 			 	 {{/each}}
 		 	</tbody>
 		</table>
 
-		{{#link-to "admin.vendors.new"}}Add New{{/link-to}}
+		{{#link-to "admin.vendors.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
 
     	{{infinity-loader infinityModel=model loadingText="" loadedText="Woohoo! You've loaded everything."}}
 

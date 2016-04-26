@@ -44,6 +44,7 @@
     "ember-cli-simple-auth-oauth2": "0.8.0",
     "ember-cli-simple-auth-testing": "0.8.0-beta.2",
     "ember-notify": "^4.4.0",
+    "ember-select-2": "1.3.0",
     "semantic-ui-ember": "^0.9.3",
     "ember-infinity": "~0.0.4",
     "ember-validations": "2.0.0-alpha.3"
