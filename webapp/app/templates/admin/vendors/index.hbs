@@ -2,40 +2,54 @@
 
 	<div class="ui middle aligned stackable container padding-30">
 
+		<div class="pull-right">
+		  	<div class="search-box">
+	        	{{input value=searchField enter="search" placeholder="Search"}}
+	      	</div>
+	      	<button class="search_button" {{action 'search'}}><i class="search icon"></i></button>
+	    </div>
+
 		<div class="max-width-1170 clearfix section-header-wrap margin-top-0 inline-block">
 		  <h5 class="uppercase regular pull-left margin-0 custom-header">Vendors</h5>
 		</div>
 
-		<table class="ui celled table">
-		 	<thead>
-		 	  	<tr>
-		 	  		<th>Name</th>
-			 	  	<th>Discount</th>
-			 	  	<th>Service Fee</th>
-			 	  	<th>Minimum Amount For Free Visit</th>
-			 	  	<th>Single Fee Visit</th>
-			 	  	<th>Double Fee Visit</th>
-			 	  	<th>Email</th>
-			 	  	<th></th>
-			 	  	<th></th>
-		 		</tr>
-		 	</thead>
-		 	<tbody>
-		 		{{#each model as |vendor|}}
-			 	 	<tr>
-			 	 	  	<td>{{vendor.name}}</td>
-			 	 	  	<td>{{vendor.discount}}</td>
-			 	 	  	<td>{{vendor.service_fee}}</td>
-			 	 	  	<td>{{vendor.minimum_amount_for_free_visit}}</td>
-			 	 	  	<td>{{vendor.single_visit_fee}}</td>
-			 	 	  	<td>{{vendor.double_visit_fee}}</td>
-			 	 	  	<td>{{vendor.email}}</td>
-			 	 	  	<td>{{#link-to "admin.vendors.edit" vendor.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}</td>
-			 	 	  	<td class="delete_button"><button {{action "delete" vendor}}><i class="trash icon"></i> Delete</button></td>
-			 	 	</tr>
-			 	 {{/each}}
-		 	</tbody>
-		</table>
+		<div class="list_table">
+  			<div class="content">
+    			<div class="row bg-brand clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+				        <div class="col col-10 col-center color-white title_head">Name</div>
+				        <div class="col col-10 col-center color-white title_head">Discount</div>
+				        <div class="col col-10 col-center color-white title_head">Service Fee</div>
+				        <div class="col col-10 col-center color-white title_head">Minimum Amount For Free Visit</div>
+				        <div class="col col-10 col-center color-white title_head">Single Fee Visit</div>
+				        <div class="col col-10 col-center color-white title_head">Double Fee Visit</div>
+				        <div class="col col-25 col-center color-white title_head">Email</div>
+				        <div class="col col-15 no-content"></div>
+      				</div>
+    			</div>
+    			<div class="row clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+      					{{#each model as |vendor|}}
+      					<div class="content-row clearfix">
+					        <div class="col col-10 col-center title_head">{{vendor.name}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.discount}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.service_fee}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.minimum_amount_for_free_visit}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.single_visit_fee}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.double_visit_fee}}</div>
+					        <div class="col col-25 col-center title_head"><a href="mailto:{{vendor.email}}">{{vendor.email}}</a></div>
+					        <div class="col col-15 no-content title_head action_buttons">
+					        	{{#link-to "admin.vendors.edit" vendor.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
+				 	 	  		<div class="delete_button">
+				 	 	  			<button {{action "delete" vendor}}><i class="trash icon"></i> Delete</button>
+				 	 	  		</div>
+					        </div>
+					    </div>
+					    {{/each}}
+      				</div>
+    			</div>
+    		</div>
+    	</div>
 
 		{{#link-to "admin.vendors.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
 

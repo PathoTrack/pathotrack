@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    protected $fillable = ['name', 'number'];
+    protected $fillable = ['name', 'number', 'vendor_id'];
 
     /**
      * The database table used by the model.
@@ -14,4 +14,8 @@ class Contact extends Model
      * @var string
      */
     protected $table = 'contacts';
+
+    public function vendor() {
+        return $this->belongsTo('PathoTrack\Vendor');
+    }
 }

@@ -2,38 +2,52 @@
 
 	<div class="ui middle aligned stackable container padding-30">
 
+		<div class="pull-right">
+		  	<div class="search-box">
+	        	{{input value=searchField enter="search" placeholder="Search"}}
+	      	</div>
+	      	<button class="search_button" {{action 'search'}}><i class="search icon"></i></button>
+	    </div>
+
 		<div class="max-width-1170 clearfix section-header-wrap margin-top-0 inline-block">
 		  <h5 class="uppercase regular pull-left margin-0 custom-header">Tests</h5>
 		</div>
 
-		<table class="ui celled table">
-		 	<thead>
-		 	  	<tr>
-		 	  		<th>Name</th>
-			 	  	<th>Description</th>
-			 	  	<th>Price</th>
-			 	  	<th>Half Day Fasting</th>
-			 	  	<th>Special Instructions</th>
-			 	  	<th>Number of Visits</th>
-			 	  	<th></th>
-			 	  	<th></th>
-		 		</tr>
-		 	</thead>
-		 	<tbody>
-		 		{{#each model as |test|}}
-			 	 	<tr>
-			 	 	  	<td>{{test.name}}</td>
-			 	 	  	<td>{{test.description}}</td>
-			 	 	  	<td>{{test.price}}</td>
-			 	 	  	<td>{{test.is_half_day_fasting_applicable}}</td>
-			 	 	  	<td>{{test.special_instructions}}</td>
-			 	 	  	<td>{{test.number_of_visits_required}}</td>
-			 	 	  	<td>{{#link-to "staff.tests.edit" test.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}</td>
-			 	 	  	<td class="delete_button"><button {{action "delete" test}}><i class="trash icon"></i> Delete</button></td>
-			 	 	</tr>
-			 	 {{/each}}
-		 	</tbody>
-		</table>
+		<div class="list_table">
+  			<div class="content">
+    			<div class="row bg-brand clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+				        <div class="col col-10 col-center color-white title_head">Name</div>
+				        <div class="col col-30 col-center color-white title_head">Description</div>
+				        <div class="col col-10 col-center color-white title_head">Price</div>
+				        <div class="col col-10 col-center color-white title_head">Half Day Fasting</div>
+				        <div class="col col-15 col-center color-white title_head">Special Instructions</div>
+				        <div class="col col-10 col-center color-white title_head">Number of Visits</div>
+				        <div class="col col-15 no-content"></div>
+      				</div>
+    			</div>
+    			<div class="row clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+      					{{#each model as |test|}}
+      					<div class="content-row clearfix">
+					        <div class="col col-10 col-center title_head">{{test.name}}</div>
+					        <div class="col col-30 col-center title_head">{{test.description}}</div>
+					        <div class="col col-10 col-center title_head">{{test.price}}</div>
+					        <div class="col col-10 col-center title_head">{{test.is_half_day_fasting_applicable}}</div>
+					        <div class="col col-15 col-center title_head">{{test.special_instructions}}</div>
+					        <div class="col col-10 col-center title_head">{{test.number_of_visits_required}}</div>
+					        <div class="col col-15 no-content title_head action_buttons">
+					        	{{#link-to "staff.tests.edit" test.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
+				 	 	  		<div class="delete_button">
+				 	 	  			<button {{action "delete" test}}><i class="trash icon"></i> Delete</button>
+				 	 	  		</div>
+					        </div>
+					    </div>
+					    {{/each}}
+      				</div>
+    			</div>
+    		</div>
+    	</div>
 
 		{{#link-to "staff.tests.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
 

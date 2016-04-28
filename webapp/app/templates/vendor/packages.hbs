@@ -2,38 +2,49 @@
 
 	<div class="ui middle aligned stackable container padding-30">
 
+		<div class="pull-right">
+		  	<div class="search-box">
+	        	{{input value=searchField enter="search" placeholder="Search"}}
+	      	</div>
+	      	<button class="search_button" {{action 'search'}}><i class="search icon"></i></button>
+	    </div>
+
 		<div class="max-width-1170 clearfix section-header-wrap margin-top-0 inline-block">
 		  <h5 class="uppercase regular pull-left margin-0 custom-header">Packages</h5>
 		</div>
 
-		<table class="ui celled table">
-		 	<thead>
-		 	  	<tr>
-		 	  		<th>Name</th>
-			 	  	<th>Description</th>
-			 	  	<th>Price</th>
-			 	  	<th>Discount</th>
-			 	  	<th>Half Day Fasting</th>
-			 	  	<th>Special Instructions</th>
-			 	  	<th>Number of Visits</th>
-			 	  	<th>Is Profile Test</th>
-		 		</tr>
-		 	</thead>
-		 	<tbody>
-		 		{{#each model as |package|}}
-			 	 	<tr>
-			 	 	  	<td>{{package.name}}</td>
-			 	 	  	<td>{{package.description}}</td>
-			 	 	  	<td>{{package.price}}</td>
-			 	 	  	<td>{{package.discount}}</td>
-			 	 	  	<td>{{package.is_half_day_fasting_applicable}}</td>
-			 	 	  	<td>{{package.special_instructions}}</td>
-			 	 	  	<td>{{package.number_of_visits_required}}</td>
-			 	 	  	<td>{{package.is_profile_test}}</td>
-			 	 	</tr>
-			 	 {{/each}}
-		 	</tbody>
-		</table>
+		<div class="list_table">
+  			<div class="content">
+    			<div class="row bg-brand clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+				        <div class="col col-10 col-center color-white title_head">Name</div>
+				        <div class="col col-30 col-center color-white title_head">Description</div>
+				        <div class="col col-10 col-center color-white title_head">Price</div>
+				        <div class="col col-10 col-center color-white title_head">Discount</div>
+				        <div class="col col-10 col-center color-white title_head">Half Day Fasting</div>
+				        <div class="col col-10 col-center color-white title_head">Special Instructions</div>
+				        <div class="col col-10 col-center color-white title_head">Number of Visits</div>
+				        <div class="col col-10 col-center color-white title_head">Is Profile Test</div>
+      				</div>
+    			</div>
+    			<div class="row clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+      					{{#each model as |package|}}
+      					<div class="content-row clearfix">
+					        <div class="col col-10 col-center title_head">{{package.name}}</div>
+					        <div class="col col-30 col-center title_head">{{package.description}}</div>
+					        <div class="col col-10 col-center title_head">{{package.price}}</div>
+					        <div class="col col-10 col-center title_head">{{package.discount}}</div>
+					        <div class="col col-10 col-center title_head">{{package.is_half_day_fasting_applicable}}</div>
+					        <div class="col col-10 col-center title_head">{{package.special_instructions}}</div>
+					        <div class="col col-10 col-center title_head">{{package.number_of_visits_required}}</div>
+					        <div class="col col-10 col-center title_head">{{package.is_profile_test}}</div>
+					    </div>
+					    {{/each}}
+      				</div>
+    			</div>
+    		</div>
+    	</div>
 
     	{{infinity-loader infinityModel=model loadingText="" loadedText="Woohoo! You've loaded everything."}}
 

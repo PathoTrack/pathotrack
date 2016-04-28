@@ -9,4 +9,8 @@ export default BaseModel.extend({
 	single_visit_fee: DS.attr('number'),
 	double_visit_fee: DS.attr('number'),
 	email: DS.attr('string'),
+
+	// Relationships
+    contacts: DS.hasMany('contact', { inverse : 'vendor' }),
+
 });

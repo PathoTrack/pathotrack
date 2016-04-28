@@ -4,8 +4,15 @@
 	margin: 26px 0 14px !important;
 }
 
+.ui.table td.action_buttons {
+	text-align: right;
+}
+
 .edit_button {
 	color: #000;
+	font-size: 14px;
+    line-height: 22px;
+    padding-right: 15px;
 	i {
 		position: relative;
 		top: 1px;
@@ -16,6 +23,7 @@
 }
 
 .delete_button {
+	float: right;
 	button {
 		background-color: transparent;
 		border: 0;
@@ -44,4 +52,61 @@
 	    	margin-left: -10px;
 	    }
 	}
+}
+
+.search-box {
+	width: 300px;
+    border: 2px solid #d1d1d1;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 0 10px 20px;
+    input {
+		line-height: 1.3;
+	    padding: 5px 10px;
+	    border: none;
+	    width: 100%;
+	    &:focus {
+	    	outline: 0;
+	    }
+    }
+}
+
+.search_button {
+	border: 2px solid #d1d1d1;
+	border-radius: 5px;
+	background-color: transparent;
+	padding-top: 4px;
+    padding-bottom: 4px;
+    &:focus {
+    	outline: 0;
+    }
+	i {
+		margin-right: 0;
+	}
+}
+
+.title_head {
+	a {
+		color: #000;
+		&:hover {
+			color: #000;
+		}
+	}
+}
+
+h5.uppercase {
+	text-transform: uppercase;
+}
+
+.list_table {
+	margin-top: 30px;
+}
+
+.title_head {
+	padding: 8px 12px;
+}
+
+.content-row {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 5px 0;
 }

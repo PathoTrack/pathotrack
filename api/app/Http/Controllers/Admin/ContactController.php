@@ -50,6 +50,10 @@ class ContactController extends Controller
             $contacts = $contacts->get();
         }
 
+        foreach ($contacts as $contact) {
+            $contact->vendor;
+        }
+        
         return Response::json(array(
             'errors' => $errors,
             'contacts' => $contacts,

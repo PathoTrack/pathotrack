@@ -11,5 +11,10 @@ export default Ember.Route.extend(InfinityRoute, {
         return this.infinityModel('package', Ember.$.extend({ 
             perPage: 10,
         }, params));
+    },
+    actions: {
+        refreshModel: function() {
+            this.refresh();
+        }
     }
 });

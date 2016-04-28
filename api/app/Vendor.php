@@ -14,4 +14,8 @@ class Vendor extends Model
      * @var string
      */
     protected $table = 'vendors';
+
+    public function contacts() {
+        return $this->belongsToMany('PathoTrack\Contact');
+    }
 }

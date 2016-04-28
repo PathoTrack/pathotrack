@@ -7,6 +7,17 @@
     <label>Number</label>
     {{input value=model.contact.number type="text" name="number" placeholder="Number"}}
   </div>
+  <div class="field">
+    <label>Vendor</label>
+    {{select-2  class="display-block full-width width-500"
+                    content=model.vendors
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.contact.vendor_id
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+  
   <button class="ui button" type="submit">Submit</button>
   <button class="ui button" {{action "cancel"}}>Cancel</button>
 </form> 

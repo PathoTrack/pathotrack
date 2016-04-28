@@ -2,32 +2,46 @@
 
 	<div class="ui middle aligned stackable container padding-30">
 
+		<div class="pull-right">
+		  	<div class="search-box">
+	        	{{input value=searchField enter="search" placeholder="Search"}}
+	      	</div>
+	      	<button class="search_button" {{action 'search'}}><i class="search icon"></i></button>
+	    </div>
+
 		<div class="max-width-1170 clearfix section-header-wrap margin-top-0 inline-block">
 		  <h5 class="uppercase regular pull-left margin-0 custom-header">Contacts</h5>
 		</div>
 
-		<table class="ui celled table">
-		 	<thead>
-		 	  	<tr>
-		 	  		<th>Name</th>
-			 	  	<th>Number</th>
-			 	  	<th>Vendor</th>
-			 	  	<th></th>
-			 	  	<th></th>
-		 		</tr>
-		 	</thead>
-		 	<tbody>
-		 		{{#each model as |contact|}}
-			 	 	<tr>
-			 	 	  	<td>{{contact.name}}</td>
-			 	 	  	<td>{{contact.number}}</td>
-			 	 	  	<td></td>
-			 	 	  	<td>{{#link-to "admin.contacts.edit" contact.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}</td>
-			 	 	  	<td class="delete_button"><button {{action "delete" contact}}><i class="trash icon"></i> Delete</button></td>
-			 	 	</tr>
-			 	 {{/each}}
-		 	</tbody>
-		</table>
+		<div class="list_table">
+  			<div class="content">
+    			<div class="row bg-brand clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+				        <div class="col col-30 col-center color-white title_head">Name</div>
+				        <div class="col col-25 col-center color-white title_head">Number</div>
+				        <div class="col col-30 col-center color-white title_head">Vendor</div>
+				        <div class="col col-15 no-content"></div>
+      				</div>
+    			</div>
+    			<div class="row clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+      					{{#each model as |contact|}}
+      					<div class="content-row clearfix">
+					        <div class="col col-30 col-center title_head">{{contact.name}}</div>
+					        <div class="col col-25 col-center title_head">{{contact.number}}</div>
+					        <div class="col col-30 col-center title_head">{{contact.vendor.name}}</div>
+					        <div class="col col-15 no-content title_head action_buttons">
+					        	{{#link-to "admin.contacts.edit" contact.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
+				 	 	  		<div class="delete_button">
+				 	 	  			<button {{action "delete" contact}}><i class="trash icon"></i> Delete</button>
+				 	 	  		</div>
+					        </div>
+					    </div>
+					    {{/each}}
+      				</div>
+    			</div>
+    		</div>
+    	</div>
 
 		{{#link-to "admin.contacts.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
 
