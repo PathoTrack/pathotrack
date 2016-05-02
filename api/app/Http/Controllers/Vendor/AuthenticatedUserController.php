@@ -1,7 +1,7 @@
 <?php namespace PathoTrack\Http\Controllers\Vendor;
 
 use PathoTrack\Http\Requests;
-use PathoTrack\Http\Controllers\Controller;
+use PathoTrack\Http\Controllers\BaseAuthenticatedUserController;
 
 use Request;
 use Response;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Authorizer;
 use PathoTrack\User;
 
-class AuthenticatedUserController extends Controller {
+class AuthenticatedUserController extends BaseAuthenticatedUserController {
 
     public function index() {
         $user = null;
@@ -42,32 +42,4 @@ class AuthenticatedUserController extends Controller {
             'authenticatedUsers' => [$user]
         ), 200);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        $input = Input::json()->get('authenticatedUser');
-
-        $user = User::find($id);
-        $user->update();
-                    
-        return Response::json(array(
-            'errors' => [],
-            'user' => [$user]
-        ), 200);
-    }
-
-    public function destroy() {
-        Auth::logout();
-        return Response::json(array(
-            'errors' => [],
-        ), 200);
-    }
-
 }

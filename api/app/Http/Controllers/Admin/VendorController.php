@@ -1,7 +1,7 @@
 <?php namespace PathoTrack\Http\Controllers\Admin;
 
 use Illuminate\Http\Requests;
-use PathoTrack\Http\Controllers\Controller;
+use PathoTrack\Http\Controllers\BaseVendorController;
 
 use Request;
 use Response;
@@ -11,13 +11,8 @@ use Illuminate\Support\Facades\Input;
 
 use PathoTrack\Vendor;
 
-class VendorController extends Controller
+class VendorController extends BaseVendorController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
         $errors = [];
@@ -57,95 +52,5 @@ class VendorController extends Controller
                 'total_pages' => $total_pages
             )
         ), empty($errors) ? 200 : 400);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        $input = Input::json()->get('vendor');
-
-        $vendor = new Vendor($input);
-        $vendor->save();
-
-        return Response::json(array(
-            'errors' => [],
-            'vendor' => [$vendor]
-        ), 200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $vendor = Vendor::find($id);
-        
-        return Response::json(array(
-            'errors' => [],
-            'vendor' => $vendor
-        ), 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        $input = Input::json()->get('vendor');
-
-        $vendor = Vendor::find($id);
-        $vendor->update($input);
-                    
-        return Response::json(array(
-            'errors' => [],
-            'vendor' => [$vendor]
-        ), 200);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $vendor = Vendor::find($id);
-        $vendor->delete();
-     
-        return Response::json(array(
-            'errors' => [],
-        ), 200);
     }
 }

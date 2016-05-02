@@ -1,7 +1,7 @@
 <?php namespace PathoTrack\Http\Controllers\Vendor;
 
 use Illuminate\Http\Requests;
-use PathoTrack\Http\Controllers\Controller;
+use PathoTrack\Http\Controllers\BaseTestController;
 
 use Request;
 use Response;
@@ -12,19 +12,13 @@ use Illuminate\Support\Facades\Input;
 use PathoTrack\Test;
 use PathoTrack\Package;
 
-class TestController extends Controller
+class TestController extends BaseTestController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
         $errors = [];
         $tests = [];
         $packages = [];
-        $total_pages = null;
         $filters = Input::get();
         $per_page = Input::get('per_page');
 
