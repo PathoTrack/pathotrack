@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'info@visa.guide', 'name' => 'Visa Guide'],
+    'from' => ['address' => 'info@pathotrack.com', 'name' => 'Patho Track'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => 'AKIAIPHR6D74CZOUXJTQ',
+    'username' => 'AKIAJBBFH3KX2P56RRMQ',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => 'Ap2+5WfVowmDYBpfSztYhKx6uh9jOwWwKz8YzwDtGGIT',
+    'password' => 'AsxJBt+0Au3YE7kT1tMdnRxziwZX1hLgDDyvKjvfKhYQ',
 
     /*
     |--------------------------------------------------------------------------
