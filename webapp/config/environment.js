@@ -32,7 +32,7 @@ module.exports = function(environment) {
       'media-src': "'self'"
     },
     'simple-auth': {
-      authenticationRoute: 'login',
+      authenticationRoute: 'index',
       routeAfterAuthentication: 'loggedin',
       routeIfAlreadyAuthenticated: 'loggedin',
       authorizer: 'simple-auth-authorizer:oauth2-bearer',

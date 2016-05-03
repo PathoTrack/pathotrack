@@ -1,0 +1,38 @@
+<div class="full-height bg-grey">
+  <div class="ui center padding-top-70 max-width-600 relative z-10 max-width-400">
+    <div class="column center">
+      <h2 class="ui teal image header">
+        <div class="logo">
+          Patho Track
+        </div>
+      </h2>
+      <form {{action "authenticate" on="submit"}} class="ui large form">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              {{input type="email" value=identification id='email' placeholder="E-mail address" autocomplete="on"}}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              {{input type="password" value=password id='password' placeholder="Password"}}
+            </div>
+          </div>
+          {{spin-button id="btn-login"
+                      class="ui fluid large black submit button"
+                      buttonText="Login" 
+                      type="submit" 
+                      isLoading=isLoading}}
+          
+        </div>
+
+      </form>
+
+      <div class="ui message">
+        <a target="_blank" {{action 'goToUrl' forgotPasswordURL '_blank'}} class="font-size-12 block pointer">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+</div>

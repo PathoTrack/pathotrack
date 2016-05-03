@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand logo medium" href="/">
-                    <div class="tacnique-logo"></div>
+                    <div class="logo">Patho Track</div>
                 </a>
             </div>
 
