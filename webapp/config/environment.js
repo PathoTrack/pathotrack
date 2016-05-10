@@ -22,8 +22,7 @@ module.exports = function(environment) {
       API_CLIENT_SECRET: 'fGXnEsBQFqxNgxIIpWqNUiBw7VdDv0oK',
       ENV: environment || 'local',
     },
-    contentSecur
-    ityPolicy: {
+    contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com https://*.errorception.com", // Allow scripts from https://cdn.mxpnl.com
       'font-src': "'self' https://fonts.gstatic.com", // Allow fonts to be loaded from https://fonts.gstatic.com

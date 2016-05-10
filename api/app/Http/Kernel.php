@@ -30,6 +30,15 @@ class Kernel extends HttpKernel
         'auth' => \PathoTrack\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \PathoTrack\Http\Middleware\RedirectIfAuthenticated::class,
-        'csrf' => 'PathoTrack\Http\Middleware\VerifyCsrfToken'
+        'csrf' => 'PathoTrack\Http\Middleware\VerifyCsrfToken',
+
+        // OAuth2Server
+        'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
+        'oauth-user' => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
+        'oauth-client' => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,
+        'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
+
+        // Custom
+        'role' => \PathoTrack\Http\Middleware\RoleMiddleware::class,
     ];
 }

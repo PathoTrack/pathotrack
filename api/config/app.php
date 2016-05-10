@@ -159,6 +159,12 @@ return [
         PathoTrack\Providers\RouteServiceProvider::class,
 
         /*
+         * OAuth2 Providers...
+        */
+        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+
+        /*
          * Helper Service Providers...
          */
         'PathoTrack\Providers\HelperServiceProvider',
@@ -222,7 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Authorizer'=> 'LucaDegasperi\OAuth2Server\Facades\AuthorizerFacade',   // OAuth2Server facade alias
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,  // OAuth2Server facade alias
         'Entrust'   => 'Zizaco\Entrust\EntrustFacade'          // Entrust facade alias
 
     ],

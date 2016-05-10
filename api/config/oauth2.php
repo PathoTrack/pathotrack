@@ -40,17 +40,11 @@ return [
         ],
         'password' => [
             'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
-            'callback' => function($email, $password) {
-                if( Auth::validate([
-                    'email'    => $email,
-                    'password' => $password,
-                ])){
-                        $user = User::where('email', $email)->first();
-                        return $user->id;
-                  } else {
-                        return false;
-                  }
-            },
+            'callback' => '\PathoTrack\PasswordGrantVerifier@verify',
+            'access_token_ttl' => 3600
+        ],
+        'client_credentials' => [
+            'class' => '\League\OAuth2\Server\Grant\ClientCredentialsGrant',
             'access_token_ttl' => 3600
         ]
     ],

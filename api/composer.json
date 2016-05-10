@@ -7,10 +7,10 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1",
-        "lucadegasperi/oauth2-server-laravel": "4.0.x@dev",
+        "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "zizaco/entrust": "dev-laravel-5",
         "aws/aws-sdk-php-laravel": "~3.0",
-        "doctrine/dbal":"~2.3"
+        "doctrine/dbal":"v2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -40,6 +40,25 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('PathoTrack\Role', 'role_user');
     }
 
+    public function hasAtleastOneRole() {
+        if (sizeof($this->roles) > 0) {
+            return true;
+        }
+        return false;
+    } 
+
+    public function isVendor() {
+        return $this->hasRole('vendor');
+    }
+
+    public function isStaff() {
+        return $this->hasRole('staff');
+    }
+
+    public function isAdmin() {
+        return $this->hasRole('admin');
+    }
+
     
     /**
      * Detach all roles from a user
