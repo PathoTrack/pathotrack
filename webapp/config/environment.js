@@ -16,19 +16,20 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      API_HOST: 'http://api.pathotrack.com',
-      WEBAPP_HOST: 'http://web.pathotrack.com',
+      API_HOST: 'https://api.pathotrack.com',
+      WEBAPP_HOST: 'https://web.pathotrack.com',
       API_CLIENT_ID: 'zgisIxWAehLZ4mvr',
       API_CLIENT_SECRET: 'fGXnEsBQFqxNgxIIpWqNUiBw7VdDv0oK',
       ENV: environment || 'local',
     },
-    contentSecurityPolicy: {
+    contentSecur
+    ityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' http://www.google-analytics.com http://*.errorception.com", // Allow scripts from https://cdn.mxpnl.com
-      'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
-      'connect-src': "'self' https://api.pathotrack.com https://api-local.pathotrack.com https://api.trello.com http://*.errorception.com https://api.aylien.com ws://localhost:35729 ws://0.0.0.0:35729", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com https://*.errorception.com", // Allow scripts from https://cdn.mxpnl.com
+      'font-src': "'self' https://fonts.gstatic.com", // Allow fonts to be loaded from https://fonts.gstatic.com
+      'connect-src': "'self' https://api.pathotrack.com https://api-local.pathotrack.com https://api.trello.com https://*.errorception.com https://api.aylien.com ws://localhost:35729 ws://0.0.0.0:35729", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
       'img-src': "'self' 'unsafe-inline' *",
-      'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com", // Allow inline styles and loaded CSS from https://fonts.googleapis.com 
       'media-src': "'self'"
     },
     'simple-auth': {
@@ -52,7 +53,7 @@ module.exports = function(environment) {
       ENV.APP.LOG_VIEW_LOOKUPS = true;*/
 
       ENV.APP.API_HOST = 'https://api-local.pathotrack.com';
-      ENV.APP.WEBAPP_HOST = 'http://localhost:4200/';
+      ENV.APP.WEBAPP_HOST = 'https://localhost:4200/';
       ENV['simple-auth'].crossOriginWhitelist = ['https://api-local.pathotrack.com'];
       ENV['simple-auth-oauth2'].serverTokenEndpoint = ['https://api-local.pathotrack.com/oauth/access_token'];
   }
@@ -60,8 +61,8 @@ module.exports = function(environment) {
   if (environment === 'development') {
       ENV.APP.LOG_RESOLVER = true;
 
-      ENV.APP.API_HOST = 'http://api-dev.visa-guide';
-      ENV.APP.WEBAPP_HOST = 'http://web-dev.visa-guide';
+      ENV.APP.API_HOST = 'https://api-dev.visa-guide';
+      ENV.APP.WEBAPP_HOST = 'https://web-dev.visa-guide';
   }
 
   if (environment === 'test-local') {
@@ -70,7 +71,7 @@ module.exports = function(environment) {
       ENV.locationType = 'none';
       ENV.APP.rootElement = '#ember-testing';
 
-      ENV.APP.API_HOST = 'http://api.visa.dev';
+      ENV.APP.API_HOST = 'https://api.visa.dev';
   }
 
   return ENV;
