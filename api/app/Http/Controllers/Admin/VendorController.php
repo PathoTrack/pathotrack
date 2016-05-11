@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 use PathoTrack\Vendor;
+use PathoTrack\User;
 
 class VendorController extends BaseVendorController
 {
@@ -23,10 +24,11 @@ class VendorController extends BaseVendorController
 
         $nonFilterKeys = array('per_page', 'page', 'search');
 
-        $vendors = Vendor::orderBy('name', 'asc');
+        $vendors = Vendor::orderBy('user_id', 'asc');
 
         if(Input::has('search') && !empty(Input::get('search'))) {
-            $vendors = $vendors->where('name', 'like', '%'.Input::get('search').'%');
+            $user_ids = User::where('name', 'like', '%'.Input::get('search').'%')->lists('id');
+            $vendors = $vendors->whereIn('user_id', $user_ids);
         }
 
         foreach ($filters as $key => $value) {
@@ -44,6 +46,12 @@ class VendorController extends BaseVendorController
         } else {
             $vendors = $vendors->get();
         }
+
+        foreach ($vendors as $vendor) {
+            $vendor->user;
+            $vendor->name = $vendor->user->name;
+        }
+
 
         return Response::json(array(
             'errors' => $errors,

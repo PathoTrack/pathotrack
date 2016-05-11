@@ -31,13 +31,13 @@
       				<div class="row title-row max-width-1170 clearfix">
       					{{#each model as |vendor|}}
       					<div class="content-row clearfix">
-					        <div class="col col-10 col-center title_head">{{vendor.name}}</div>
-					        <div class="col col-10 col-center title_head">{{vendor.discount}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.user.name}}</div>
+					        <div class="col col-10 col-center title_head">{{vendor.discount}}%</div>
 					        <div class="col col-10 col-center title_head">{{vendor.service_fee}}</div>
 					        <div class="col col-10 col-center title_head">{{vendor.minimum_amount_for_free_visit}}</div>
 					        <div class="col col-10 col-center title_head">{{vendor.single_visit_fee}}</div>
 					        <div class="col col-10 col-center title_head">{{vendor.double_visit_fee}}</div>
-					        <div class="col col-25 col-center title_head"><a href="mailto:{{vendor.email}}">{{vendor.email}}</a></div>
+					        <div class="col col-25 col-center title_head"><a href="mailto:{{vendor.user.email}}">{{vendor.user.email}}</a></div>
 					        <div class="col col-15 no-content title_head action_buttons">
 					        	{{#link-to "admin.vendors.edit" vendor.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
 				 	 	  		<div class="delete_button">

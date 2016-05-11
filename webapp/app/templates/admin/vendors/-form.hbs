@@ -4,7 +4,16 @@
     {{input value=model.vendor.name type="text" name="name" placeholder="Name"}}
   </div>
   <div class="field">
+    <label>Email</label>
+    {{input value=model.vendor.email type="text" name="email" placeholder="Email"}}
+  </div>
+  <div class="field">
+    <label>Password</label>
+    {{input value=model.vendor.password type="password" name="password" placeholder="Password"}}
+  </div>
+  <div class="field">
     <label>Discount</label>
+    <span class="error inline">{{model.vendor.errors.discount}}</span>
     {{input value=model.vendor.discount type="number" name="discount" placeholder="Discount"}}
   </div>
   <div class="field">
@@ -22,10 +31,6 @@
   <div class="field">
     <label>Double Fee Visit</label>
     {{input value=model.vendor.double_visit_fee type="number" name="double-fee-visit" placeholder="Double Fee Visit"}}
-  </div>
-  <div class="field">
-    <label>Email</label>
-    {{input value=model.vendor.email type="text" name="email" placeholder="Email"}}
   </div>
   <button class="ui button" type="submit">Submit</button>
   <button class="ui button" {{action "cancel"}}>Cancel</button>

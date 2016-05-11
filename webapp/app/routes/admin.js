@@ -3,7 +3,7 @@ import BaseModel from '../models/base-model';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-    beforeModel: function(transition) {
+    beforeModel: function() {
         BaseModel.reopenClass({
             namespace: 'admin' 
         });

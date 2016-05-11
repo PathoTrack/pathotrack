@@ -28,17 +28,16 @@ class AuthenticatedUserController extends BaseAuthenticatedUserController {
         } 
 
         if(empty($user)) {
-            $errors = [
-                'title' => 'You do not seem to be logged in',
-                'code' => 400,
-                'status' => 'BAD_REQUEST'
-            ];
-        } else {
-            $user->gravatar_img_url = 'https://www.gravatar.com/avatar/'.md5( strtolower( trim( Auth::user()->email ) ) ).'?d=mm';
+            return Response::json(array(
+                'error' => array([
+                    'title'     => 'You do not seem to be logged in',
+                    'status'    => 'BAD_REQUEST',
+                    'code'      => 400
+                ]),
+            ), 400);
         }
 
         return Response::json(array(
-            'errors' => $errors,
             'authenticatedUsers' => [$user]
         ), 200);
     }
