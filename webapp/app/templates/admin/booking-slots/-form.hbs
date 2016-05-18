@@ -1,0 +1,34 @@
+<form class="ui vertical stripe segment form" {{action "save" on="submit"}}>
+  
+  <div class="field">
+    <label>Day</label>
+    {{select-2  class="display-block full-width width-500"
+                    content=model.bookingSlot.day
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.contact.vendor_id
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+
+  <div class="field">
+    <label>Start Time</label>
+    {{select-2  class="display-block full-width width-500"
+                    content=model.bookingSlot.start_time
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.contact.vendor_id
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+
+  <div class="field">
+    <div class="ui checkbox">
+      {{input type="checkbox" checked=model.bookingSlot.is_active}}
+      <label>Active</label>
+    </div>
+  </div>
+
+  <button class="ui button" type="submit">Submit</button>
+  <button class="ui button" {{action "cancel"}}>Cancel</button>
+</form> 

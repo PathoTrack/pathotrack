@@ -1,0 +1,53 @@
+<div class="ui vertical stripe segment padding-70">
+
+	<div class="ui middle aligned stackable container padding-30">
+
+		<div class="max-width-1170 clearfix section-header-wrap margin-top-0 inline-block">
+		  <h5 class="uppercase regular pull-left margin-0 custom-header">Booking Slots</h5>
+		</div>
+
+		<div class="list_table">
+  			<div class="content">
+    			<div class="row bg-brand clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+				        <div class="col col-30 col-center color-white title_head">Day</div>
+				        <div class="col col-20 col-center color-white title_head">Start Time</div>
+				        <div class="col col-20 col-center color-white title_head">End Time</div>
+				        <div class="col col-20 col-center color-white title_head">Active</div>
+				        <div class="col col-10 no-content"></div>
+      				</div>
+    			</div>
+    			<div class="row clearfix">
+      				<div class="row title-row max-width-1170 clearfix">
+      					{{#each model as |slot|}}
+      					<div class="content-row clearfix">
+					        <div class="col col-30 col-center title_head">{{slot.day}}</div>
+					        <div class="col col-20 col-center title_head">{{slot.start_time}}</div>
+					        <div class="col col-20 col-center title_head">{{slot.end_time}}</div>
+					        <div class="col col-20 col-center title_head">
+								{{#if slot.is_active}}
+					        		<span class="fa fa-check-circle"></span>
+					        	{{else}}
+					        		<span class="fa fa-times-circle"></span>
+					        	{{/if}}
+					        </div>
+					        <div class="col col-10 no-content title_head action_buttons">
+					        	{{#link-to "admin.booking-slots.edit" slot.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
+				 	 	  		<div class="delete_button">
+				 	 	  			<button {{action "delete" slot}}><i class="trash icon"></i> Delete</button>
+				 	 	  		</div>
+					        </div>
+					    </div>
+					    {{/each}}
+      				</div>
+    			</div>
+    		</div>
+    	</div>
+
+		{{#link-to "admin.booking-slots.new" classNames="add_button"}}<i class="plus icon"></i>{{/link-to}}
+
+    	{{infinity-loader infinityModel=model loadingText="" loadedText="Woohoo! You've loaded everything."}}
+
+	</div>
+
+</div>

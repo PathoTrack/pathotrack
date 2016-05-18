@@ -61,6 +61,12 @@ Router.map(function() {
       this.route('new');
       this.route('edit', { path: ':contact_id/edit' });
     });
+
+    this.route('booking-slots', function() {
+      this.route('new');
+      this.route('edit', { path: ':booking_slot_id/edit' });
+    });
+    
   });
 
   // Auhtentication
