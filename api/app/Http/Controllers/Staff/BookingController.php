@@ -1,4 +1,4 @@
-<?php namespace PathoTrack\Http\Controllers\Vendor;
+<?php namespace PathoTrack\Http\Controllers\Staff;
 
 use Illuminate\Http\Requests;
 use PathoTrack\Http\Controllers\BaseBookingController;

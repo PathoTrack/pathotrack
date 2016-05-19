@@ -17,6 +17,7 @@ class PackageController extends BasePackageController
     {
         $errors = [];
         $packages = [];
+        $total_pages = null;
         $filters = Input::get();
         $per_page = Input::get('per_page');
 

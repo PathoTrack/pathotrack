@@ -37,13 +37,20 @@ Route::group(array('namespace' => 'Staff', 'prefix' => 'v1/staff', 'middleware' 
     Route::resource('authenticatedUser', 'AuthenticatedUserController', ['only' => ['index', 'destroy', 'update']]);
     Route::resource('packages', 'PackageController');
     Route::resource('tests', 'TestController');
+    Route::resource('bookings', 'BookingController');
+    Route::resource('vendors', 'VendorController');
+    Route::resource('users', 'UserController');
+    Route::resource('bookingSlots', 'BookingSlotController', ['only' => ['index']]);
 });
 
-Route::group(array('namespace' => 'Vendor', 'prefix' => 'v1/vendor'), function() {
+Route::group(array('namespace' => 'Vendor', 'prefix' => 'v1/vendor', 'middleware' => ['oauth', 'oauth-user', 'role']), function() {
     Route::resource('authenticatedUser', 'AuthenticatedUserController', ['only' => ['index', 'destroy', 'update']]);
     Route::resource('packages', 'PackageController', ['only' => ['index']]);
     Route::resource('tests', 'TestController', ['only' => ['index']]);
     Route::resource('bookings', 'BookingController');
+    Route::resource('vendors', 'VendorController');
+    Route::resource('users', 'UserController');
+    Route::resource('bookingSlots', 'BookingSlotController', ['only' => ['index']]);
 });
 
 Route::group(array('namespace' => 'Admin', 'prefix' => 'v1/admin', 'middleware' => ['oauth', 'oauth-user', 'role']), function() {

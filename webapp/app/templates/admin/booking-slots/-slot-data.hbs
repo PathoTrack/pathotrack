@@ -1,0 +1,9 @@
+<div class="col col-50">{{slot.start_time}} - {{slot.end_time}}</div>
+<div class="col col-50 no-content action_buttons">
+	<div class="pull-right">
+		{{#link-to "admin.booking-slots.edit" slot.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
+  		<div class="delete_button">
+  			<button {{action "delete" slot}}><i class="trash icon"></i> Delete</button>
+  		</div>
+	</div>
+</div>

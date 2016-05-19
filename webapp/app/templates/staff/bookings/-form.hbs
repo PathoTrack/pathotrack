@@ -1,0 +1,69 @@
+<form class="ui vertical stripe segment form" {{action "save" on="submit"}}>
+  
+  <div class="field">
+    <label>Date <span class="error inline">{{model.booking.errors.date}}</span></label>
+    {{input type="date" placeholder="YYYY-MM-DD" value=model.booking.date class='full-width'}}
+  </div>
+
+  {{#if model.booking.date}}
+    <div class="field">
+      <label>Slot <span class="error inline">{{model.booking.errors.booking_slot_id}}</span></label>
+      {{select-2  class="display-block full-width"
+                      content=bookingSlots
+                      optionLabelPath="slot_time"
+                      optionValuePath="id"
+                      value=model.booking.booking_slot_id
+                      placeholder="Select"
+                      allowClear=true }}
+    </div>
+  {{/if}}
+
+  <div class="field">
+    <label>User <span class="error inline">{{model.booking.errors.user_id}}</span></label>
+    {{select-2  class="display-block full-width"
+                    content=model.users
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.booking.user_id
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+
+  <div class="field">
+    <label>Vendor <span class="error inline">{{model.booking.errors.vendor_id}}</span></label>
+    {{select-2  class="display-block full-width"
+                    content=model.vendors
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.booking.vendor_id
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+
+  <div class="field">
+    <label>Tests</label>
+    {{select-2  class="display-block full-width"
+                    content=model.tests
+                    multiple=true
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.booking.test_ids
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+
+  <div class="field">
+    <label>Packages</label>
+    {{select-2  class="display-block full-width"
+                    content=model.packages
+                    multiple=true
+                    optionLabelPath="name"
+                    optionValuePath="id"
+                    value=model.booking.package_ids
+                    placeholder="Select"
+                    allowClear=true }}
+  </div>
+
+  <button class="ui button" type="submit">Submit</button>
+  <button class="ui button" {{action "cancel"}}>Cancel</button>
+</form> 

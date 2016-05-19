@@ -2,24 +2,18 @@
   
   <div class="field">
     <label>Day</label>
-    {{select-2  class="display-block full-width width-500"
-                    content=model.bookingSlot.day
+    {{select-2  class="display-block full-width"
+                    content=model.days
                     optionLabelPath="name"
-                    optionValuePath="id"
-                    value=model.contact.vendor_id
+                    optionValuePath="name"
+                    value=model.bookingSlot.day
                     placeholder="Select"
                     allowClear=true }}
   </div>
 
   <div class="field">
     <label>Start Time</label>
-    {{select-2  class="display-block full-width width-500"
-                    content=model.bookingSlot.start_time
-                    optionLabelPath="name"
-                    optionValuePath="id"
-                    value=model.contact.vendor_id
-                    placeholder="Select"
-                    allowClear=true }}
+    {{input value=model.bookingSlot.start_time id='start_time' type="number" placeholder="00" step="1" min="1" max="24" autocomplete="off"}}
   </div>
 
   <div class="field">

@@ -4,19 +4,17 @@ export default Ember.Controller.extend({
     actions: {
         save: function() {
             var _this = this;
-            var vendor = this.get('model.vendor');
+            var bookingSlot = this.get('model.bookingSlot');
 
-            if (vendor.get('isValid')) {
-                vendor.save().then(function() {
-                    _this.transitionToRoute('admin.vendors');
+            if (bookingSlot.get('isValid')) {
+                bookingSlot.save().then(function() {
+                    _this.transitionToRoute('admin.booking-slots');
                 });
-            } else {
-                _this.notify.alert('Please make the discount less than or equal to 100');
             }
             return false;
         },
         cancel: function() {
-            this.transitionToRoute('admin.vendors');
+            this.transitionToRoute('admin.booking-slots');
             return false;
         }
     }

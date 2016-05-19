@@ -40,6 +40,12 @@ Router.map(function() {
       this.route('new');
       this.route('edit', { path: ':test_id/edit' });
     });
+
+    this.route('bookings', function() {
+      this.route('new');
+      this.route('edit', { path: ':booking_id/edit' });
+    });
+
   });
 
   this.route('vendor', function() {
@@ -47,6 +53,12 @@ Router.map(function() {
 
     this.route('packages');
     this.route('tests');
+
+    this.route('bookings', function() {
+      this.route('new');
+      this.route('edit', { path: ':booking_id/edit' });
+    });
+
   });
 
   this.route('admin', function() {

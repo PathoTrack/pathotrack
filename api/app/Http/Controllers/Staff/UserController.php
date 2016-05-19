@@ -1,7 +1,7 @@
-<?php namespace PathoTrack\Http\Controllers\Vendor;
+<?php namespace PathoTrack\Http\Controllers\Staff;
 
 use Illuminate\Http\Requests;
-use PathoTrack\Http\Controllers\BaseTestController;
+use PathoTrack\Http\Controllers\Controller;
 
 use Request;
 use Response;
@@ -9,47 +9,42 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-use PathoTrack\Test;
-use PathoTrack\Package;
+use PathoTrack\User;
 
-class TestController extends BaseTestController
+class UserController extends Controller
 {
     public function index()
     {
         $errors = [];
-        $tests = [];
-        $packages = [];
+        $users = [];
         $total_pages = null;
         $filters = Input::get();
         $per_page = Input::get('per_page');
 
         $nonFilterKeys = array('per_page', 'page', 'search');
 
-        $tests = Test::orderBy('name', 'asc');
-
-        if(Input::has('search') && !empty(Input::get('search'))) {
-            $tests = $tests->where('name', 'like', '%'.Input::get('search').'%');
-        }
+        $users = User::orderBy('name', 'asc');
 
         foreach ($filters as $key => $value) {
             if (!in_array($key, $nonFilterKeys)) {
-                $tests = $tests->where($key, '=', $value);
+                $users = $users->where($key, '=', $value);
             }
         }
 
         if ($per_page) {
-            $test_pagination = $tests->paginate($per_page);
-            $tests = $test_pagination->items();
-            $total_pages = $test_pagination->lastPage();
+            $user_pagination = $users->paginate($per_page);
+            $users = $user_pagination->items();
+            $total_pages = $user_pagination->lastPage();
         } else if($filters) {
-            $tests = $tests->get();
+            $users = $users->get();
         } else {
-            $tests = $tests->get();
+            $users = $users->get();
         }
+
 
         return Response::json(array(
             'errors' => $errors,
-            'tests' => $tests,
+            'users' => $users,
             'meta' => array(
                 'total_pages' => $total_pages
             )

@@ -1,7 +1,7 @@
 <?php namespace PathoTrack\Http\Controllers\Vendor;
 
 use Illuminate\Http\Requests;
-use PathoTrack\Http\Controllers\BaseBookingController;
+use PathoTrack\Http\Controllers\BaseBookingSlotController;
 
 use Request;
 use Response;
@@ -9,22 +9,23 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-class BookingController extends BaseBookingController
+use PathoTrack\BookingSlot;
+
+class BookingSlotController extends BaseBookingSlotController
 {
     public function index()
     {
         $errors = [];
-        $bookings = collect([]);
+        $booking_slots = collect([]);
         $inputs = Input::get();
 
-        $bookings = BaseBookingController::getBookings($inputs);
-        BaseBookingController::getBookingsData($bookings);
+        $booking_slots = BaseBookingSlotController::getBookingSlots($inputs);
 
         return Response::json(array(
             'errors' => $errors,
-            'bookings' => $bookings,
+            'booking_slots' => $booking_slots,
             'meta' => array(
-                'total_pages' => BaseBookingController::$total_pages
+                'total_pages' => BaseBookingSlotController::$total_pages
             )
         ), empty($errors) ? 200 : 400);
     }

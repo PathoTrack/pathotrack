@@ -1,7 +1,7 @@
 <?php namespace PathoTrack\Http\Controllers\Staff;
 
 use Illuminate\Http\Requests;
-use PathoTrack\Http\Controllers\BaseTestController;
+use PathoTrack\Http\Controllers\BaseVendorController;
 
 use Request;
 use Response;
@@ -9,47 +9,53 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-use PathoTrack\Test;
-use PathoTrack\Package;
+use PathoTrack\Vendor;
+use PathoTrack\User;
 
-class TestController extends BaseTestController
+class VendorController extends BaseVendorController
 {
     public function index()
     {
         $errors = [];
-        $tests = [];
-        $packages = [];
+        $vendors = [];
         $total_pages = null;
         $filters = Input::get();
         $per_page = Input::get('per_page');
 
         $nonFilterKeys = array('per_page', 'page', 'search');
 
-        $tests = Test::orderBy('name', 'asc');
+        $vendors = Vendor::orderBy('user_id', 'asc');
 
         if(Input::has('search') && !empty(Input::get('search'))) {
-            $tests = $tests->where('name', 'like', '%'.Input::get('search').'%');
+            $user_ids = User::where('name', 'like', '%'.Input::get('search').'%')->lists('id');
+            $vendors = $vendors->whereIn('user_id', $user_ids);
         }
 
         foreach ($filters as $key => $value) {
             if (!in_array($key, $nonFilterKeys)) {
-                $tests = $tests->where($key, '=', $value);
+                $vendors = $vendors->where($key, '=', $value);
             }
         }
 
         if ($per_page) {
-            $test_pagination = $tests->paginate($per_page);
-            $tests = $test_pagination->items();
-            $total_pages = $test_pagination->lastPage();
+            $vendor_pagination = $vendors->paginate($per_page);
+            $vendors = $vendor_pagination->items();
+            $total_pages = $vendor_pagination->lastPage();
         } else if($filters) {
-            $tests = $tests->get();
+            $vendors = $vendors->get();
         } else {
-            $tests = $tests->get();
+            $vendors = $vendors->get();
         }
+
+        foreach ($vendors as $vendor) {
+            $vendor->user;
+            $vendor->name = $vendor->user->name;
+        }
+
 
         return Response::json(array(
             'errors' => $errors,
-            'tests' => $tests,
+            'vendors' => $vendors,
             'meta' => array(
                 'total_pages' => $total_pages
             )
