@@ -61,30 +61,23 @@ class BaseBookingController extends Controller
     {
         $input = Input::json()->get('booking');
 
-        $booking = new Booking($input);
+        if (!Booking::isSlotAvailable($input['booking_slot_id'], $input['date'])) {
+            return Response::json(array(
+                'errors' => array([
+                    'title'     => 'Slot is already occupied.',
+                    'status'    => 'UNPROCESSABLE_ENTITY',
+                    'code'      => 422
+                ]),
+            ), 422);
+        }
+
+        $vendor_id = $input['vendor_id'];
         if ($input['vendor_id'] == null) {
-            $booking->vendor_id = Vendor::where('user_id', '=', Auth::user()->id)->pluck('id');
+            $vendor_id = Vendor::where('user_id', '=', Auth::user()->id)->pluck('id');
         }
-        $booking->save();
 
-        if (isset($input['test_ids']) && sizeof($input['test_ids']) > 0) {
-            foreach ($input['test_ids'] as $test_id) {
-                $booking_test = new BookingTest();
-                $booking_test->booking_id = $booking->id;
-                $booking_test->test_id = $test_id;
-                $booking_test->save();
-            }
-        }
+        $booking = Booking::storeBooking($input, $vendor_id);
         
-        if (isset($input['package_ids']) && sizeof($input['package_ids']) > 0) {
-            foreach ($input['package_ids'] as $package_id) {
-                $booking_package = new BookingPackage();
-                $booking_package->booking_id = $booking->id;
-                $booking_package->package_id = $package_id;
-                $booking_package->save();
-            }
-        }
-
         return Response::json(array(
             'booking' => [$booking]
         ), 200);
@@ -109,32 +102,21 @@ class BaseBookingController extends Controller
     public function update($id)
     {
         $input = Input::json()->get('booking');
+        $existing_booking = Booking::find($id);
 
-        $booking = Booking::find($id);
-        if ($input['vendor_id'] == null) {
-            $booking->vendor_id = Vendor::where('user_id', '=', Auth::user()->id)->pluck('id');
-        }
-        $booking->update($input);
-
-        if (isset($input['test_ids'])) {
-            BookingTest::where('booking_id', '=', $booking->id)->delete();
-            foreach ($input['test_ids'] as $test_id) {
-                $booking_test = new BookingTest();
-                $booking_test->booking_id = $booking->id;
-                $booking_test->test_id = $test_id;
-                $booking_test->save();
+        if ($existing_booking->booking_slot_id != $input['booking_slot_id']) {
+            if (!Booking::isSlotAvailable($input['booking_slot_id'], $input['date'])) {
+                return Response::json(array(
+                    'errors' => array([
+                        'title'     => 'Slot is already occupied.',
+                        'status'    => 'UNPROCESSABLE_ENTITY',
+                        'code'      => 422
+                    ]),
+                ), 422);
             }
         }
-        
-        if (isset($input['package_ids'])) {
-            BookingPackage::where('booking_id', '=', $booking->id)->delete();
-            foreach ($input['package_ids'] as $package_id) {
-                $booking_package = new BookingPackage();
-                $booking_package->booking_id = $booking->id;
-                $booking_package->package_id = $package_id;
-                $booking_package->save();
-            }
-        }
+
+        $booking = Booking::updateBooking($existing_booking, $input);
                     
         return Response::json(array(
             'booking' => $booking

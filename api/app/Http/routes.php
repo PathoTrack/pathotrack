@@ -64,3 +64,7 @@ Route::group(array('namespace' => 'Open', 'prefix' => 'v1/open'), function() {
     Route::resource('packages', 'PackageController', ['only' => ['index']]);
     Route::resource('tests', 'TestController', ['only' => ['index']]);
 });
+
+Route::group(array('namespace' => 'Open', 'prefix' => 'v1/open', 'middleware' => ['vendor-key']), function() {
+    Route::resource('bookings', 'BookingController');
+});

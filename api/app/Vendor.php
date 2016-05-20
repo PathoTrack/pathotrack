@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
 {
-    protected $fillable = ['discount', 'service_fee', 'minimum_amount_for_free_visit', 'single_visit_fee', 'double_visit_fee'];
+    protected $fillable = ['discount', 'service_fee', 'minimum_amount_for_free_visit', 'single_visit_fee', 'double_visit_fee', 'key'];
 
     /**
      * The database table used by the model.
@@ -21,5 +21,9 @@ class Vendor extends Model
     
     public function user() {
         return $this->belongsTo('PathoTrack\User');
+    }
+
+    public static function findVendor($key) {
+        return Vendor::where('key', '=', $key)->first();
     }
 }

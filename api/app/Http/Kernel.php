@@ -40,5 +40,6 @@ class Kernel extends HttpKernel
 
         // Custom
         'role' => \PathoTrack\Http\Middleware\RoleMiddleware::class,
+        'vendor-key' => \PathoTrack\Http\Middleware\VendorKeyMiddleware::class,
     ];
 }

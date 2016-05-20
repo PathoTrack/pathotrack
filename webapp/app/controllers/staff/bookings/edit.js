@@ -8,6 +8,8 @@ export default BaseBooking.extend({
                 
             booking.save().then(function() {
                 _this.transitionToRoute('staff.bookings');
+            }, function(errors) {
+                _this.notify.alert(errors.responseJSON.errors.get('firstObject.title'));
             });
             return false;
         },
