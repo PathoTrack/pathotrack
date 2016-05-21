@@ -23,7 +23,6 @@ class BaseVendorController extends Controller
         $user = new User();
         $user->name = $input['name'];
         $user->email = $input['email'];
-        $user->key = bin2hex(openssl_random_pseudo_bytes(16));
         $user->password = Hash::make($input['password']);
         $user->save();
 
@@ -35,6 +34,7 @@ class BaseVendorController extends Controller
 
         $vendor = new Vendor($input);
         $vendor->user_id = $user->id;
+        $vendor->key = bin2hex(openssl_random_pseudo_bytes(16));
         $vendor->save();
 
         $vendor->user;
