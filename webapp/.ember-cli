@@ -7,6 +7,6 @@
   */
   "disableAnalytics": false,
   "ssl": true,
-  "ssl-key": "D:/wamp/bin/apache/apache2.4.2/conf/server.key",
-  "ssl-cert": "D:/wamp/bin/apache/apache2.4.2/conf/server.crt"
+  "ssl-key": "C:/wamp/bin/apache/apache2.4.17/conf/server.key",
+  "ssl-cert": "C:/wamp/bin/apache/apache2.4.17/conf/server.crt"
 }

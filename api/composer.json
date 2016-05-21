@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1",
+        "laravel/framework": "5.1.*",
         "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "zizaco/entrust": "dev-laravel-5",
         "aws/aws-sdk-php-laravel": "~3.0",
