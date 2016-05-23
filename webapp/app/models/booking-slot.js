@@ -5,7 +5,7 @@ export default BaseModel.extend({
 	day: DS.attr('string'),
     start_time: DS.attr('number'),
 	end_time: DS.attr('number'),
-	is_active: DS.attr('boolean'),
+	is_active: DS.attr('boolean', { defaultValue: true }),
 
     // Validations
     validations: {

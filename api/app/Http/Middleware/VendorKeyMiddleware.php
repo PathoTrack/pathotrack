@@ -3,6 +3,7 @@
 namespace PathoTrack\Http\Middleware;
 
 use Closure;
+use PathoTrack\Vendor;
 
 class VendorKeyMiddleware
 {
@@ -17,6 +18,11 @@ class VendorKeyMiddleware
 
         if (is_null($vendor_key)) {
             abort(403, 'Access denied');
+        } else {
+            $vendor = Vendor::findVendor($vendor_key);
+            if (sizeof($vendor) < 1) {
+                abort(403, 'Access denied');
+            }
         }
         
         return $next($request);

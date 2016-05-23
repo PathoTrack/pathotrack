@@ -18,11 +18,12 @@
     			<div class="row bg-brand clearfix">
       				<div class="row title-row max-width-1170 clearfix">
 				        <div class="col col-10 col-center color-white title_head">Name</div>
-				        <div class="col col-30 col-center color-white title_head">Description</div>
 				        <div class="col col-10 col-center color-white title_head">Price</div>
 				        <div class="col col-10 col-center color-white title_head">Half Day Fasting</div>
 				        <div class="col col-15 col-center color-white title_head">Special Instructions</div>
-				        <div class="col col-10 col-center color-white title_head">Number of Visits</div>
+                        <div class="col col-10 col-center color-white title_head">Number of Visits</div>
+				        <div class="col col-10 col-center color-white title_head">Is profile test</div>
+                        <div class="col col-10 col-center color-white title_head">Turn around time</div>
 				        <div class="col col-15 no-content"></div>
       				</div>
     			</div>
@@ -31,7 +32,6 @@
       					{{#each model as |test|}}
       					<div class="content-row clearfix">
 					        <div class="col col-10 col-center title_head">{{test.name}}</div>
-					        <div class="col col-30 col-center title_head">{{test.description}}</div>
 					        <div class="col col-10 col-center title_head">{{test.price}}</div>
 					        <div class="col col-10 col-center title_head">{{test.is_half_day_fasting_applicable}}</div>
 					        <div class="col col-15 col-center title_head">
@@ -42,6 +42,14 @@
 					        	{{/if}}
 					        </div>
 					        <div class="col col-10 col-center title_head">{{test.number_of_visits_required}}</div>
+                            <div class="col col-10 col-center title_head">
+                                {{#if test.is_profile_test}}
+                                    <span class="fa fa-check-circle"></span>
+                                {{else}}
+                                    <span class="fa fa-times-circle"></span>
+                                {{/if}}
+                            </div>
+                            <div class="col col-10 col-center title_head">{{test.turn_around_time}}</div>
 					        <div class="col col-15 no-content title_head action_buttons">
 					        	{{#link-to "staff.tests.edit" test.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
 				 	 	  		<div class="delete_button">

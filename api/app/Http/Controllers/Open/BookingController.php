@@ -18,37 +18,26 @@ class BookingController extends Controller
     public function store()
     {
         $booking = collect([]);
-        $vendor_key_from_request = null;
+        $vendor_key = null;
         $input = Input::json()->get('booking');
 
         if (isset(getallheaders()['vendor_key'])) {
-            $vendor_key_from_request = getallheaders()['vendor_key'];
+            $vendor_key = getallheaders()['vendor_key'];
         }
 
-        if (!is_null($vendor_key_from_request)) {
-            $vendor = Vendor::findVendor($vendor_key_from_request);
-            if (sizeof($vendor) < 1) {
+        if (!is_null($vendor_key)) {
+            $vendor = Vendor::findVendor($vendor_key);
+            if (!Booking::isSlotAvailable($input['booking_slot_id'], $input['date'])) {
                 return Response::json(array(
                     'error' => array([
-                        'title'     => 'Invalid vendor key',
+                        'title'     => 'Slot is already occupied.',
                         'status'    => 'UNPROCESSABLE_ENTITY',
                         'code'      => 422
                     ]),
                 ), 422);
             }
+            $booking = Booking::storeBooking($input, $vendor->id);
         }
-
-        if (!Booking::isSlotAvailable($input['booking_slot_id'], $input['date'])) {
-            return Response::json(array(
-                'error' => array([
-                    'title'     => 'Slot is already occupied.',
-                    'status'    => 'UNPROCESSABLE_ENTITY',
-                    'code'      => 422
-                ]),
-            ), 422);
-        }
-
-        $booking = Booking::storeBooking($input, $vendor->id);
         
         return Response::json(array(
             'booking' => [$booking]

@@ -24,7 +24,6 @@
 				        <div class="col col-10 col-center color-white title_head">Half Day Fasting</div>
 				        <div class="col col-10 col-center color-white title_head">Special Instructions</div>
 				        <div class="col col-10 col-center color-white title_head">Number of Visits</div>
-				        <div class="col col-10 col-center color-white title_head">Is Profile Test</div>
 				        <div class="col col-15 no-content"></div>
       				</div>
     			</div>
@@ -51,13 +50,6 @@
 					        	{{/if}}
 					        </div>
 					        <div class="col col-10 col-center title_head">{{package.number_of_visits_required}}</div>
-					        <div class="col col-10 col-center title_head">
-					        	{{#if package.is_profile_test}}
-					        		<span class="fa fa-check-circle"></span>
-					        	{{else}}
-					        		<span class="fa fa-times-circle"></span>
-					        	{{/if}}
-					        </div>
 					        <div class="col col-15 no-content title_head action_buttons">
 					        	{{#link-to "staff.packages.edit" package.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
 				 	 	  		<div class="delete_button">
