@@ -12,7 +12,7 @@ class AddTurnAroundTimeToTestsTable extends Migration
      */
     public function up()
     {
-        Schema::table('test', function (Blueprint $table) {
+        Schema::table('tests', function (Blueprint $table) {
             $table->string('turn_around_time')->after('number_of_visits_required');
         });
     }
@@ -24,7 +24,7 @@ class AddTurnAroundTimeToTestsTable extends Migration
      */
     public function down()
     {
-        Schema::table('test', function (Blueprint $table) {
+        Schema::table('tests', function (Blueprint $table) {
             $table->dropColumn(['turn_around_time']);
         });
     }
