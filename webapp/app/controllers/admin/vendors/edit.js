@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
                     _this.transitionToRoute('admin.vendors');
                 });
             } else {
-                _this.notify.alert('Please make the discount less than or equal to 100');
+                _this.notify.alert('Please provide all the necessary information!');
             }
             return false;
         },

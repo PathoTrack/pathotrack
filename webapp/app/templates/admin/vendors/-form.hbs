@@ -12,12 +12,11 @@
     {{input value=model.vendor.password type="password" name="password" placeholder="Password"}}
   </div>
   <div class="field">
-    <label>Discount</label>
-    <span class="error inline">{{model.vendor.errors.discount}}</span>
+    <label>Discount % <span class="error inline">{{model.vendor.errors.discount}}</span></label>
     {{input value=model.vendor.discount type="number" name="discount" placeholder="Discount"}}
   </div>
   <div class="field">
-    <label>Service Fee</label>
+    <label>Service Fee % <span class="error inline">{{model.vendor.errors.service_fee}}</span></label>
     {{input value=model.vendor.service_fee type="number" name="service-fee" placeholder="Service Fee"}}
   </div>
   <div class="field">

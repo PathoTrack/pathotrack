@@ -31,13 +31,16 @@ export default Ember.Controller.extend({
     }.property('model'),
 
     actions: {
-        delete: function(slot) {
+        inactivate: function(slot) {
             var _this = this;
-            
-            slot.deleteRecord();
-            slot.save().then(function() {
-                _this.send('refreshModel');
-            });
+
+            if (confirm("This slot won't be accessible anymore, are you sure you want to deactivate this slot?")) {
+                slot.set('is_active', false);
+                slot.save().then(function() {
+                    _this.notify.success('Slot inactivated successfully!');
+                    _this.send('refreshModel');
+                });
+            }
             return false;
         }
     }

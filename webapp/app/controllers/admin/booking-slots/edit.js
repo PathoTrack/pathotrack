@@ -10,6 +10,8 @@ export default Ember.Controller.extend({
                 bookingSlot.save().then(function() {
                     _this.transitionToRoute('admin.booking-slots');
                 });
+            } else {
+                _this.notify.alert('Please provide all the necessary information!');
             }
             return false;
         },
