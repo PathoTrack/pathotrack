@@ -10,25 +10,26 @@ use Illuminate\Support\Facades\Input;
 
 use PathoTrack\Booking;
 use PathoTrack\BookingPackage;
+use PathoTrack\BookingPatient;
 use PathoTrack\BookingTest;
 use PathoTrack\Vendor;
+use PathoTrack\User;
+use PathoTrack\Role;
 
 class BookingController extends Controller
 {
     public function store()
     {
+        $user_id = null;
         $booking = collect([]);
+
         $vendor_key = getallheaders()['vendor_key'];
-        $inputs = Input::json();
-        $booking = $inputs->get('booking');
-        $user = $inputs->get('patients');
-        $patients = $inputs->get('patients');
+        $booking = Input::json()->get('booking');
+        $patients = Input::json()->get('patients');
+        $user = $booking['user'];
 
         // Store user
-
-        foreach($patients as $patients) {
-            // Store patients
-        }
+        $user_id = User::storeUser($user)->id;
 
         $vendor = Vendor::findVendor($vendor_key);
         if (!Booking::isSlotAvailable($booking['booking_slot_id'], $booking['date'])) {
@@ -40,12 +41,24 @@ class BookingController extends Controller
                 ]),
             ), 422);
         }
-        $users = Booking::storeBooking($booking, $vendor->id);
+
+        $booking['user_id'] = $user_id;
         $booking = Booking::storeBooking($booking, $vendor->id);
-        
+
+        // Store patients
+        for ($count = 0; $count < sizeof($patients); $count++) { 
+            $patients[$count]['id'] = User::storeUser($patients[$count], Role::where('name', '=', 'patient')->pluck('id'))->id;
+
+            $booking_patient = new BookingPatient();
+            $booking_patient->patient_id = $patients[$count]['id'];
+            $booking_patient->booking_id = $booking->id;
+            $booking_patient->save();
+        }
+
+
         return Response::json(array(
             'booking'   => [$booking],
-            'users'     => $users
+            'patients'  => $patients
         ), 200);
     }
 }

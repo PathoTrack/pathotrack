@@ -27,7 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'phone_number', 'active', 'activation_code', 'activated_at', 'street_address', 'state', 'zip_code', 'country_id', 'city_id'];
+    protected $fillable = ['name', 'email', 'password', 'phone_number', 'dob', 'sex'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -57,6 +57,29 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function isAdmin() {
         return $this->hasRole('admin');
+    }
+
+    public static function getExistingUser($email) {
+        return User::where('email', '=', $email)->first();
+    }
+
+    public static function storeUser($input, $role_id = null) {
+
+        $existing_user = User::where('email', '=', $input['email'])->first();
+
+        if (sizeof($existing_user) > 0) {
+            $existing_user->update(array_merge((array)$existing_user, (array)$input));
+            $user = $existing_user;
+        } else {
+            $user = new User($input);
+            $user->save();
+        }
+
+        if ($role_id && !$user->hasRole('patient')) {
+            $user->attachRole($role_id);
+        }
+
+        return $user;
     }
 
     
