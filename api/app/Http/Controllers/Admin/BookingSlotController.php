@@ -54,9 +54,17 @@ class BookingSlotController extends Controller
     {
         $input = Input::json()->get('bookingSlot');
 
-        $booking_slot = new BookingSlot($input);
-        $booking_slot->end_time = $input['start_time'] + 1;
-        $booking_slot->save();
+        $existing_booking_slot = BookingSlot::getExistingBookingSlot($input);
+
+        if (sizeof($existing_booking_slot) > 0) {
+            $existing_booking_slot->no_of_booking = $existing_booking_slot->no_of_booking + 1;
+            $existing_booking_slot->save();
+            $booking_slot = $existing_booking_slot;
+        } else {
+            $booking_slot = new BookingSlot($input);
+            $booking_slot->end_time = $input['start_time'] + 1;
+            $booking_slot->save();
+        }
 
         return Response::json(array(
             'booking_slot' => [$booking_slot]
@@ -77,8 +85,15 @@ class BookingSlotController extends Controller
         $input = Input::json()->get('bookingSlot');
 
         $booking_slot = BookingSlot::find($id);
-        $booking_slot->end_time = $input['start_time'] + 1;
-        $booking_slot->update($input);
+        $existing_booking_slot = BookingSlot::getExistingBookingSlot($input);
+
+        if (sizeof($existing_booking_slot) > 0 && $existing_booking_slot->id != $id) {
+            $existing_booking_slot->no_of_booking = $existing_booking_slot->no_of_booking + 1;
+            $existing_booking_slot->save();
+        } else {
+            $booking_slot->end_time = $input['start_time'] + 1;
+            $booking_slot->update($input);
+        }
                     
         return Response::json(array(
             'booking_slot' => $booking_slot

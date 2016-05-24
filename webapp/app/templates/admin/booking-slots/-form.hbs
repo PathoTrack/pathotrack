@@ -1,7 +1,7 @@
 <form class="ui vertical stripe segment form" {{action "save" on="submit"}}>
   
   <div class="field">
-    <label>Day</label>
+    <label>Day <span class="error inline">{{model.bookingSlot.errors.day}}</span></label>
     {{select-2  class="display-block full-width"
                     content=model.days
                     optionLabelPath="name"
@@ -12,8 +12,13 @@
   </div>
 
   <div class="field">
-    <label>Start Time</label>
+    <label>Start Time <span class="error inline">{{model.bookingSlot.errors.start_time}}</span></label>
     {{input value=model.bookingSlot.start_time id='start_time' type="number" placeholder="00" step="1" min="1" max="24" autocomplete="off"}}
+  </div>
+
+  <div class="field">
+    <label>No of bookings <span class="error inline">{{model.bookingSlot.errors.no_of_booking}}</span></label>
+    {{input value=model.bookingSlot.no_of_booking id='no_of_booking' type="number" step="1" min="1"}}
   </div>
 
   <div class="field">

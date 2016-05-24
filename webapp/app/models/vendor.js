@@ -22,6 +22,11 @@ export default BaseModel.extend({
         	numericality: { 
         		lessThanOrEqualTo : 100 
         	}
+        },
+        service_fee: { 
+            numericality: { 
+                lessThanOrEqualTo : 100 
+            }
         }
     }
 

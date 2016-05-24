@@ -74,6 +74,6 @@ class Booking extends Model
     }
 
     public static function isSlotAvailable($slot_id, $date) {
-        return Booking::where('booking_slot_id', '=', $slot_id)->where('date', '=', $date)->count() < 1 ? true : false;
+        return Booking::where('booking_slot_id', '=', $slot_id)->where('date', '=', $date)->count() < BookingSlot::where('id', '=', $slot_id)->pluck('no_of_booking') ? true : false;
     }
 }

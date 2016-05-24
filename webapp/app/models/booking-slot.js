@@ -6,6 +6,7 @@ export default BaseModel.extend({
     start_time: DS.attr('number'),
 	end_time: DS.attr('number'),
 	is_active: DS.attr('boolean', { defaultValue: true }),
+    no_of_booking: DS.attr('number', { defaultValue: 1 }),
 
     // Validations
     validations: {
@@ -15,7 +16,7 @@ export default BaseModel.extend({
         start_time: { 
             presence: true
         },
-        is_active: { 
+        no_of_booking: { 
             presence: true
         }
     }
