@@ -22,7 +22,7 @@
       					<div class="content-row clearfix">
 					        <div class="col col-30 col-center title_head">{{booking.date}} - ({{booking.booking_slot.start_time}} - {{booking.booking_slot.end_time}})</div>
 					        <div class="col col-25 col-center title_head">{{booking.user.name}}</div>
-					        <div class="col col-25 col-center title_head">{{booking.vendor.name}}</div>
+					        <div class="col col-25 col-center title_head">{{booking.vendor.user.name}}</div>
 					        <div class="col col-20 no-content title_head action_buttons">
 					        	<div class="pull-right">
 					        		{{#link-to "vendor.bookings.edit" booking.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}

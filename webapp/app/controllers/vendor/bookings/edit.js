@@ -5,12 +5,15 @@ export default BaseBooking.extend({
         save: function() {
             var _this = this,
                 booking = this.get('model.booking');
-                
-            booking.save().then(function() {
-                _this.transitionToRoute('vendor.bookings');
-            }, function(errors) {
-                _this.notify.alert(errors.responseJSON.errors.get('firstObject.title'));
-            });
+
+            if (booking.get('isValid')) {
+                // Set patients data on booking model 
+                booking.save().then(function() {
+                    _this.transitionToRoute('vendor.bookings');
+                }, function(errors) {
+                    _this.notify.alert(errors.responseJSON.errors.get('firstObject.title'));
+                });
+            }
             return false;
         },
         cancel: function() {

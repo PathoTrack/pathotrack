@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 use PathoTrack\Booking;
+use PathoTrack\BookingPatient;
 use PathoTrack\BookingPackage;
 use PathoTrack\BookingTest;
 use PathoTrack\Vendor;
+use PathoTrack\Role;
+use PathoTrack\User;
 
 class BaseBookingController extends Controller
 {
@@ -51,7 +54,7 @@ class BaseBookingController extends Controller
 
     public function getBookingsData($bookings) {
         foreach ($bookings as $booking) {
-            $booking->vendor;
+            $booking->vendor->user;
             $booking->user;
             $booking->bookingSlot;
         }
@@ -60,6 +63,7 @@ class BaseBookingController extends Controller
     public function store()
     {
         $input = Input::json()->get('booking');
+        $patients = $input['patients'];
 
         if (!Booking::isSlotAvailable($input['booking_slot_id'], $input['date'])) {
             return Response::json(array(
@@ -71,15 +75,20 @@ class BaseBookingController extends Controller
             ), 422);
         }
 
-        $vendor_id = $input['vendor_id'];
+        $vendor_id = $input['vendor_id']; // if request is coming from staff, it will send vendor_id in request
         if ($input['vendor_id'] == null) {
             $vendor_id = Vendor::where('user_id', '=', Auth::user()->id)->pluck('id');
         }
 
+        $input['user_id'] = Auth::user()->id; // booking done by user
         $booking = Booking::storeBooking($input, $vendor_id);
+
+        // Store patients
+        $patients = BookingPatient::addBookingPatients($patients, $booking->id);
         
         return Response::json(array(
-            'booking' => [$booking]
+            'booking' => [$booking],
+            'patients'  => $patients
         ), 200);
     }
 
@@ -92,7 +101,8 @@ class BaseBookingController extends Controller
         $booking->bookingSlot;
         $booking->test_ids = BookingTest::where('booking_id', '=', $booking->id)->lists('test_id');
         $booking->package_ids = BookingPackage::where('booking_id', '=', $booking->id)->lists('package_id');
-
+        $patient_ids = BookingPatient::where('booking_id', '=', $booking->id)->lists('patient_id');
+        $booking->patients = User::whereIn('id', $patient_ids)->get();
         
         return Response::json(array(
             'booking' => $booking
@@ -102,6 +112,7 @@ class BaseBookingController extends Controller
     public function update($id)
     {
         $input = Input::json()->get('booking');
+        $patients = $input['patients'];
         $existing_booking = Booking::find($id);
 
         if ($existing_booking->booking_slot_id != $input['booking_slot_id']) {
@@ -116,6 +127,7 @@ class BaseBookingController extends Controller
             }
         }
 
+        $input['user_id'] = Auth::user()->id; // booking done by user
         $booking = Booking::updateBooking($existing_booking, $input);
                     
         return Response::json(array(

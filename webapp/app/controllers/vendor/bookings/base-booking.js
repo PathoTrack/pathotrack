@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import GENDER from '../../../constants/gender';
 
 export default Ember.Controller.extend({
-
     bookingSlots: null,
+    gender: GENDER,
 
     dateChanged: function() {
         if (this.get('model.booking.date')) {

@@ -53,6 +53,7 @@ Router.map(function() {
 
     this.route('packages');
     this.route('tests');
+    this.route('patients');
 
     this.route('bookings', function() {
       this.route('new');

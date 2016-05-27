@@ -11,6 +11,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use PathoTrack\Address;
+
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword, EntrustUserTrait;
@@ -40,6 +42,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('PathoTrack\Role', 'role_user');
     }
 
+    public function address() {
+        return $this->belongsTo('PathoTrack\Address');
+    }
+
     public function hasAtleastOneRole() {
         if (sizeof($this->roles) > 0) {
             return true;
@@ -64,14 +70,29 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     public static function storeUser($input, $role_id = null) {
-
+        
+        $address_id = null;
         $existing_user = User::where('email', '=', $input['email'])->first();
 
         if (sizeof($existing_user) > 0) {
             $existing_user->update(array_merge((array)$existing_user, (array)$input));
             $user = $existing_user;
+
+            if ($user->address_id) {
+                $address = Address::find($user->address_id);
+                $address->update(array_merge((array)$address, (array)$input['address']));
+            }
         } else {
             $user = new User($input);
+            if (isset($new_user['password'])) {
+                $user->password = Hash::make($new_user['password']);
+            }
+            if (isset($input['address'])) {
+                $address = new Address($input['address']);
+                $address->save();
+                $address_id = $address->id;
+            }
+            $user->address_id = $address_id;
             $user->save();
         }
 

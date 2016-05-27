@@ -8,6 +8,7 @@ export default BaseModel.extend({
     date: DS.attr('string'),
     test_ids: DS.attr(''),
     package_ids: DS.attr(''),
+    patients: DS.attr(''),
 
     // Relationships
     booking_slot: DS.belongsTo('booking-slot'),
@@ -18,9 +19,6 @@ export default BaseModel.extend({
     validations: {
         booking_slot_id: { 
         	presence: true
-        },
-        user_id: { 
-            presence: true
         },
         date: { 
             presence: true

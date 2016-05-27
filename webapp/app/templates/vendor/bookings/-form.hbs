@@ -19,17 +19,6 @@
   {{/if}}
 
   <div class="field">
-    <label>User <span class="error inline">{{model.booking.errors.user_id}}</span></label>
-    {{select-2  class="display-block full-width"
-                    content=model.users
-                    optionLabelPath="name"
-                    optionValuePath="id"
-                    value=model.booking.user_id
-                    placeholder="Select"
-                    allowClear=true }}
-  </div>
-
-  <div class="field">
     <label>Tests</label>
     {{select-2  class="display-block full-width"
                     content=model.tests
@@ -53,6 +42,100 @@
                     allowClear=true }}
   </div>
 
+  <div class="patients-info">
+    <h3>Patients Information</h3>
+
+    {{#if model.booking.isNew}}
+      {{#each patients as |patient|}}
+        <div class="patient-info">
+          {{!-- <a href="#" {{action 'deletePatient' patient}}> Delete </a> --}}
+          <div class="field">
+            <label>Name <span class="error inline">{{patient.errors.name}}</span></label>
+            {{input value=patient.name type="text" name="patient_name" placeholder="Name"}}
+          </div>
+          <div class="field">
+            <label>Email <span class="error inline">{{patient.errors.email}}</span></label>
+            {{input value=patient.email type="text" name="patient_email" placeholder="Email"}}
+          </div>
+          <div class="field">
+            <label>Phone Number <span class="error inline">{{patient.errors.phone_number}}</span></label>
+            {{input value=patient.phone_number type="text" name="patient_phone_number" placeholder="Number"}}
+          </div>
+          <div class="field">
+            <label>DOB <span class="error inline">{{patient.errors.dob}}</span></label>
+            {{input type="date" placeholder="YYYY-MM-DD" value=patient.dob class='full-width'}}
+          </div>
+          <div class="field">
+            <label>Gender <span class="error inline">{{patient.errors.name}}</span></label>
+            {{select-2  class="display-block full-width"
+                            content=gender
+                            optionLabelPath="name"
+                            optionValuePath="name"
+                            value=patient.sex
+                            placeholder="Select"}}
+          </div>
+          <div>
+            <h5>Address</h5>
+            <div class="field">
+              <label>Address Line 1</label>
+              {{input value=patient.address.address_line_1 type="text" name="address_line_1" placeholder="Address Line 1"}}
+            </div>
+            <div class="field">
+              <label>Address Line 2</label>
+              {{input value=patient.address.address_line_2 type="text" name="address_line_2" placeholder="Address Line 2"}}
+            </div>
+            <div class="field">
+              <label>Pincode</label>
+              {{input value=patient.address.pincode type="number" name="pincode" placeholder="Pincode"}}
+            </div>
+            <div class="field">
+              <label>Special Instructions</label>
+              {{input value=patient.address.special_instructions type="text" name="special_instructions" placeholder="Special Instructions"}}
+            </div>
+            <div class="field">
+              <label>Suburb</label>
+              {{input value=patient.address.suburb type="text" name="suburb" placeholder="Suburb"}}
+            </div>
+            <div class="field">
+              <label>City</label>
+              {{input value=patient.address.city type="text" name="city" placeholder="City"}}
+            </div>
+            <div class="field">
+              <label>Latitude</label>
+              {{input value=patient.address.latitude type="text" name="latitude" placeholder="Latitude"}}
+            </div>
+            <div class="field">
+              <label>Longitude</label>
+              {{input value=patient.address.longitude type="text" name="longitude" placeholder="Longitude"}}
+            </div>
+          </div>
+        </div>
+
+      {{/each}}
+      <button class="ui button" {{action "addNewPatient"}}>Add Patient</button>
+    {{else}}
+      <div class="ui cards">
+        {{#each model.booking_patients as |booking_patient|}}
+          <div class="card">
+            <div class="content">
+              <div class="header">
+                {{booking_patient.patient.name}}
+              </div>
+              <div class="meta">
+                {{booking_patient.patient.email}}
+              </div>
+              <div class="description">
+                <p>Gender: {{#if booking_patient.patient.sex}}{{booking_patient.patient.sex}}{{else}} - {{/if}}</p>
+                <p>DOB: {{#if booking_patient.patient.dob}}{{booking_patient.patient.dob}}{{else}} - {{/if}}</p>
+                <p>Phone Number: {{#if booking_patient.patient.phone_number}}{{booking_patient.patient.phone_number}}{{else}} - {{/if}}</p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+
   <button class="ui button" type="submit">Submit</button>
   <button class="ui button" {{action "cancel"}}>Cancel</button>
-</form> 
+</form>
