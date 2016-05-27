@@ -62,6 +62,12 @@ Route::group(array('namespace' => 'Admin', 'prefix' => 'v1/admin', 'middleware' 
     Route::resource('vendors', 'VendorController');
     Route::resource('contacts', 'ContactController');
     Route::resource('bookingSlots', 'BookingSlotController');
+    Route::resource('bookingPatients', 'BookingPatientController', ['only' => ['index']]);
+    Route::resource('patients', 'PatientController', ['only' => ['index']]);
+    Route::resource('bookings', 'BookingController');
+    Route::resource('packages', 'PackageController');
+    Route::resource('tests', 'TestController');
+    Route::resource('patients', 'PatientController', ['only' => ['index']]);
 });
 
 Route::group(array('namespace' => 'Open', 'prefix' => 'v1/open'), function() {

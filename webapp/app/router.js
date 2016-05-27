@@ -65,6 +65,12 @@ Router.map(function() {
 
   this.route('admin', function() {
     this.route('dashboard');
+    this.route('patients');
+    
+    this.route('bookings', function() {
+      this.route('new');
+      this.route('edit', { path: ':booking_id/edit' });
+    });
 
     this.route('vendors', function() {
       this.route('new');
@@ -79,6 +85,16 @@ Router.map(function() {
     this.route('booking-slots', function() {
       this.route('new');
       this.route('edit', { path: ':booking_slot_id/edit' });
+    });
+
+    this.route('packages', function() {
+      this.route('new');
+      this.route('edit', { path: ':package_id/edit' });
+    });
+
+    this.route('tests', function() {
+      this.route('new');
+      this.route('edit', { path: ':test_id/edit' });
     });
     
   });
