@@ -15,4 +15,11 @@ class Address extends Model
      * @var string
      */
     protected $table = 'addresses';
+
+    public static function storeAddress($address) {
+        $address = new Address($address);
+        $address->save();
+
+        return $address;
+    }
 }

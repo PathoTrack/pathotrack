@@ -30,6 +30,7 @@ Router.map(function() {
 
   this.route('staff', function() {
     this.route('dashboard');
+    this.route('patients');
 
     this.route('packages', function() {
       this.route('new');

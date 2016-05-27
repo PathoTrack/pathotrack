@@ -41,6 +41,8 @@ Route::group(array('namespace' => 'Staff', 'prefix' => 'v1/staff', 'middleware' 
     Route::resource('vendors', 'VendorController');
     Route::resource('users', 'UserController');
     Route::resource('bookingSlots', 'BookingSlotController', ['only' => ['index']]);
+    Route::resource('bookingPatients', 'BookingPatientController', ['only' => ['index']]);
+    Route::resource('patients', 'PatientController', ['only' => ['index']]);
 });
 
 Route::group(array('namespace' => 'Vendor', 'prefix' => 'v1/vendor', 'middleware' => ['oauth', 'oauth-user', 'role']), function() {

@@ -6,9 +6,13 @@ export default Ember.Route.extend({
             booking: this.store.createRecord('booking'),
             bookingSlots: this.store.find('booking-slot'),
             vendors: this.store.find('vendor'),
-            users: this.store.find('user'),
             tests: this.store.find('test'),
-            packages: this.store.find('package')
+            packages: this.store.find('package'),
+            patient: this.store.createRecord('patient'),
+            address: this.store.createRecord('address')
         });
+    },
+    afterModel: function(model) {
+        model.patient.set('sex', 'Male');
     }
 });

@@ -80,17 +80,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
             if ($user->address_id) {
                 $address = Address::find($user->address_id);
-                $address->update(array_merge((array)$address, (array)$input['address']));
+                $address->update(array_merge((array)$address, (array)$input['address_data']));
+            } else {
+                if (isset($input['address_data'])) {
+                    $user->address_id = Address::storeAddress($input['address_data'])->id;
+                    $user->save();
+                }
             }
         } else {
             $user = new User($input);
             if (isset($new_user['password'])) {
                 $user->password = Hash::make($new_user['password']);
             }
-            if (isset($input['address'])) {
-                $address = new Address($input['address']);
-                $address->save();
-                $address_id = $address->id;
+            if (isset($input['address_data'])) {
+                $address_id = Address::storeAddress($input['address_data'])->id;
             }
             $user->address_id = $address_id;
             $user->save();
