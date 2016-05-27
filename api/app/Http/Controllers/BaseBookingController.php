@@ -127,7 +127,6 @@ class BaseBookingController extends Controller
             }
         }
 
-        $input['user_id'] = Auth::user()->id; // booking done by user
         $booking = Booking::updateBooking($existing_booking, $input);
                     
         return Response::json(array(
