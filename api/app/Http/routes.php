@@ -76,6 +76,7 @@ Route::group(array('namespace' => 'Open', 'prefix' => 'v1/open'), function() {
 });
 
 Route::group(array('namespace' => 'Open', 'prefix' => 'v1/open', 'middleware' => ['vendor-key']), function() {
+    Route::resource('vendors', 'VendorController', ['only' => ['index']]);
     Route::resource('bookingSlots', 'BookingSlotController', ['only' => ['index']]);
     Route::resource('bookings', 'BookingController');
 });

@@ -29,6 +29,10 @@
     <label>Number of Visits</label>
     {{input value=model.pack.number_of_visits_required type="number" name="number-of-visits" placeholder="Number of Visits"}}
   </div>
+  <div class="field">
+    <label>Turn around time</label>
+    {{input value=model.pack.turn_around_time type="number" name="turn-around-time" placeholder="Turn around time"}}
+  </div>
   <button class="ui button" type="submit">Submit</button>
   <button class="ui button" {{action "cancel"}}>Cancel</button>
 </form> 

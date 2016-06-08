@@ -8,5 +8,6 @@ export default BaseModel.extend({
 	is_half_day_fasting_applicable: DS.attr('boolean'),
 	special_instructions: DS.attr('string'),
     number_of_visits_required: DS.attr('number'),
-	turn_around_time: DS.attr('number')
+	turn_around_time: DS.attr('number'),
+    is_profile_test: DS.attr('boolean')
 });

@@ -31,6 +31,10 @@
     <label>Double Fee Visit</label>
     {{input value=model.vendor.double_visit_fee type="number" name="double-fee-visit" placeholder="Double Fee Visit"}}
   </div>
+  <div class="field">
+    <label>API Key</label>
+    {{input value=model.vendor.key type="text" name="key" placeholder="key" disabled="disabled"}}
+  </div>
   <button class="ui button" type="submit">Submit</button>
   <button class="ui button" {{action "cancel"}}>Cancel</button>
 </form> 

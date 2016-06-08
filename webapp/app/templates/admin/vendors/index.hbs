@@ -24,7 +24,6 @@
 				        <div class="col col-10 col-center color-white title_head">Single Visit Fee</div>
 				        <div class="col col-10 col-center color-white title_head">Double Visit Fee</div>
                         <div class="col col-20 col-center color-white title_head">Email</div>
-				        <div class="col col-10 col-center color-white title_head">Key</div>
 				        <div class="col col-10 no-content"></div>
       				</div>
     			</div>
@@ -39,7 +38,6 @@
 					        <div class="col col-10 col-center title_head">{{vendor.single_visit_fee}}</div>
 					        <div class="col col-10 col-center title_head">{{vendor.double_visit_fee}}</div>
 					        <div class="col col-20 col-center title_head"><a href="mailto:{{vendor.user.email}}">{{vendor.user.email}}</a></div>
-                            <div class="col col-10 col-center title_head">{{vendor.key}}</div>
 					        <div class="col col-10 no-content title_head action_buttons">
 					        	{{#link-to "admin.vendors.edit" vendor.id classNames="edit_button"}}<i class="edit icon"></i> Edit{{/link-to}}
 				 	 	  		<div class="delete_button">
